@@ -30,6 +30,7 @@ Następnie umieść ten plik w folderze „www”.
 
 
 please  make C:/rvm/config.ini   make AllBarcode=False
+
 [Weight]
 Scale=1
 Offset=0
