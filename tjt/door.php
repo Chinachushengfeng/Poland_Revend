@@ -15,7 +15,7 @@
     background-attachment: fixed; /* 可选：固定背景不滚动 */
   }
  
-		
+		 
  
 					        .text {
             bottom:40%;
