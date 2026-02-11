@@ -4,9 +4,9 @@
 
 Update method:
 
-First, delete the files in the current "www" folder.
+First, delete the files in the current "www" folder of RVM. 
 
-D:\phpStudy\PHPTutorial\www\*.*
+C:\phpStudy\PHPTutorial\www\*.*
 
 Then, put this file into the "www" folder.
 
@@ -21,8 +21,8 @@ Zasadniczo nie trzeba aktualizować MySQL; wystarczy zastąpić „www”.
 
 Metoda aktualizacji:
 
-Najpierw usuń pliki z bieżącego folderu „www”.
+Najpierw usuń pliki z bieżącego folderu www”.
 
-D:\phpStudy\PHPTutorial\www\*.*
+C:\phpStudy\PHPTutorial\www\*.*
 
 Następnie umieść ten plik w folderze „www”.
