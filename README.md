@@ -30,26 +30,4 @@ Następnie umieść ten plik w folderze „www”.
 
 
 please  make C:/rvm/config.ini   make AllBarcode=False
-
-[Weight]
-Scale=1
-Offset=0
-MinWeight=20000
-LowerlimitWeight=500
-UpperlimitWeight=500
-[Ozone]
-Interval=360
-Duration=20
-[Screen]
-CloseHour=0
-CloseMinute=0
-OpenHour=0
-OpenMinute=0
-[Setting]
-url=http://127.0.0.1
-CameraName=HD USB CAMERA 
-imageConfidence=0
-TestModel=False
-AllBarcode=False
-PrintTemplate=1
-PrintPrice=0.5
+ 
