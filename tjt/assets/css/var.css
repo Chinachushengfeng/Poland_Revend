@@ -1,0 +1,128 @@
+:root {
+  --main-bg-color: linear-gradient(180deg, #088f4f 0%, #05683f 100%);
+  --one-circle-color: rgba(112, 244, 97, 0.1);
+  --two-circle-color: rgba(112, 244, 97, 0.12);
+  --three-circle-color: rgba(112, 244, 97, 0.2);
+  --button-content-color: rgba(16, 98, 60, 1);
+  --pageCircle-one-color: rgba(184, 225, 88, 1);
+  --pageCircle-one-color-shadow: rgba(184, 225, 88, 0.25);
+  --pageCircle-one-p-color: rgba(16, 98, 60, 1);
+  /* 第二页颜色 */
+  --left-box-shadow: rgba(0, 0, 0, 0.15);
+  --title-color: rgba(255, 255, 255, 1);
+  --contenc-color: rgba(220, 237, 200, 1);
+  --content-body-left-bg-color: rgba(184, 225, 88, 1);
+  --content-body-left-bottom-bg-color: rgba(16, 98, 60, 1);
+  --richTooltip-bg-color: rgba(28, 158, 81, 1);
+  --right-top-bg-color: rgba(28, 158, 81, 1);
+  --right-bottom-color: rgba(184, 225, 88, 1);
+  --right-bottom-box-shadow: rgba(184, 225, 88, 0.45);
+  --bottom-content-color: rgba(16, 98, 60, 1);
+  /* 第三页颜色 */
+  --back-btn-border-color: rgba(255, 255, 255, 1);
+  --right-bottom-box-shadow: rgba(184, 225, 88, 0.45);
+  --content-body-right-bg-color: rgba(184, 225, 88, 1);
+  --table-tag-color: rgba(220, 237, 200, 1);
+  --table-content-color: rgba(255, 255, 255, 1);
+  --table-line-color: rgba(49, 164, 111, 1);
+  /*第四页颜色 */
+  --table-img-bg-color: rgba(22, 83, 41, 1);
+  --table-img-shadow-color: rgba(0, 101, 1, 0.3);
+  --count-bg-color: rgba(28, 158, 81, 1);
+  --count-num-name-color: rgba(220, 237, 200, 1);
+  --count-num-bg-color: rgba(22, 83, 41, 1);
+  --count-num-color1: rgba(255, 255, 255, 1);
+  --count-num-color2: rgba(184, 225, 88, 1);
+  --tips-color: rgba(220, 237, 200, 1);
+
+  /* 提示颜色 */
+  --success-bg-color: rgba(1, 215, 85, 1);
+  --success-title-color: rgba(22, 83, 41, 1);
+  --wrong-card-bg-color: rgba(183, 28, 28, 0.75);
+  --wrong-card-border-color: rgba(239, 154, 154, 0.5);
+  --wrong-card-content-color: rgba(239, 154, 154, 1);
+  --notice-card-bg-color: rgba(249, 168, 37, 0.75);
+  --notice-card-border-color: rgba(255, 245, 157, 0.5);
+  --notice-card-content-color: rgba(255, 245, 157, 1);
+}
+
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("../fontFamily/red-hat.display.ttf");
+}
+@font-face {
+  font-family: "Red Hat Display-medium";
+  src: url("../fontFamily/red-hat.display-medium.ttf");
+}
+@font-face {
+  font-family: "roboto-medium";
+  src: url("../fontFamily/roboto.medium.ttf");
+}
+@font-face {
+  font-family: "roboto-regular";
+  src: url("../fontFamily/roboto.regular.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main {
+  position: relative;
+  width: 1080px;
+  height: 640px;
+  background: var(--main-bg-color);
+  overflow: hidden;
+}
+.content {
+  position: absolute;
+  z-index: 2;
+}
+.richTooltip {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  padding: 8px;
+}
+.content-head img {
+  width: 138.4px;
+  height: 48px;
+}
+.content-head .page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.content-head {
+  margin-top: 44px;
+  margin-right: 60px;
+  width: 960px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.page .title {
+  /* width: 281px; */
+  height: 16px;
+  font-family: Red Hat Display;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #fff;
+  margin-left: 24px;
+}
+.line {
+  width: 305px;
+  border: 1px solid var(--table-line-color);
+  margin: 26px 0;
+}
+.btn {
+  cursor: pointer;
+}
