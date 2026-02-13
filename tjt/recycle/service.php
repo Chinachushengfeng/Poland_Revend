@@ -60,14 +60,70 @@
    <script type="text/javascript" src="js/timecountdown.js"></script>
    
     
- <?php 
- include("IncDB.php");
- 	$sql="update command set command = 2  ";
- mysqli_query($link,$sql);
-			 
+ 
+ 
+<?php
+
+include("incdb.php");	 
+include("function/sql.php");
 
  
- ?>
+
+
+$transactionid= select('command','transactionid');
+
+$sql="select count(transactionid) as bottleQty from user_transaction where transactionid='$transactionid' and  metal='0' and recognitionstatus=1 and print_barcode='0'";
+$bottleQty=  mysqli_query($link,$sql);
+$bottleQty=mysqli_fetch_array($bottleQty);
+$bottleQty=$bottleQty['bottleQty'];		
+ 
+ 
+ 
+$sql="select count(transactionid) as canQty from user_transaction where transactionid='$transactionid' and  metal='1' and recognitionstatus=1 and print_barcode='0'";
+$canQty=  mysqli_query($link,$sql);
+$canQty=mysqli_fetch_array($canQty);
+$canQty=$canQty['canQty'];		
+  
+ 
+ 
+ 
+  
+$sql="update user_transaction set  transactiondone=4  where transactionid='$transactionid'";//標記結束transaction 4=crusher问题   //每次在載入首頁時候會檢查是否有0標記並上傳。
+mysqli_query($link,$sql);
+
+
+ 
+
+ if ($canQty+$bottleQty>0)
+ {
+	 
+	  
+	 	   $printer_barcode=select("printer_barcode","barcode");
+				  
+				  
+		 	  $sql="update command set  printer_barcode='$printer_barcode'";
+			 mysqli_query($link,$sql);	 
+			 
+			 	  	  
+		 	  $sql="update user_transaction  set  print_barcode='$printer_barcode' where transactionid='$transactionid'";
+			 mysqli_query($link,$sql);	 
+			 
+			 
+			 	  $sql="delete from printer_barcode  where  barcode='$printer_barcode'";
+			 mysqli_query($link,$sql);	 
+			 
+ }
+ 
+ 
+ 	  $sql="update command  set  command=2";
+			 mysqli_query($link,$sql);	 
+			 
+ 
+ 
+							?>
+							
+							
+ 
  
    
    </head>
