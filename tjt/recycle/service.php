@@ -83,7 +83,7 @@ $sql="select count(transactionid) as canQty from user_transaction where transact
 $canQty=  mysqli_query($link,$sql);
 $canQty=mysqli_fetch_array($canQty);
 $canQty=$canQty['canQty'];		
-  
+    
  
  
  
