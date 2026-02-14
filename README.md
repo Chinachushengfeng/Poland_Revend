@@ -11,6 +11,8 @@ C:\phpStudy\PHPTutorial\www\*.*
 Then, put this file into the "www" folder.
 
 
+please  make C:/rvm/config.ini   make AllBarcode=False
+ 
 
 
 ------------------Polish ---------------------
