@@ -497,7 +497,7 @@ $(function () {
 	
 	
 				}
-
+} 
 				 else if (data.success == "44") {
 
  
@@ -510,10 +510,10 @@ $(function () {
 setTimeout("javascript:location.href='cheatingend.php'", 1000); 
 
  						}
-						
+
 				
 
- 						} else if (data.success == "2") {
+ 						 else if (data.success == "2") {
 
 	playsound("Please try again");
  							evdata.data.btn.click();
