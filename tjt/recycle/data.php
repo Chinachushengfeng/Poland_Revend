@@ -318,14 +318,14 @@ while (true){
 	$sql="select count(id) as totalcheat from user_transaction where transactionid='$transactionid'and recognitionstatus=44";
 $totalcheat=  mysqli_query($link,$sql);
 $totalcheat=mysqli_fetch_array($totalcheat);
-$totalcheat=$totalvalue['totalcheat'];		 
+$totalcheat=$totalcheat['totalcheat'];		 
 
 
 
 
 
 
-if ($totalcheat<2)
+if ($totalcheat<1)
 {	
 	  
         $arr=array('success'=>"44",'num'=>'0','value'=>$barcode);    

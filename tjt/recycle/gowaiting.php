@@ -56,9 +56,8 @@ body {
 <body>
  
 	
-	
-
-   <div class="fakeloader" style="margin-top:260px;margin-left:18px"></div>
+	 
+   <div class="fakeloader" style="margin-top:265px;margin-left:5px"></div>
 
      
  
