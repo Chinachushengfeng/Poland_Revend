@@ -136,6 +136,7 @@
             align-items: center;
             justify-content: space-between;
             height: 200px;
+            top:1770px;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
         }
         .bottom-text {
