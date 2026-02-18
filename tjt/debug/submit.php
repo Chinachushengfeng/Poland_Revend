@@ -35,26 +35,7 @@ $mid=$result['mid'];
 
 
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
 
 if ($bin_type == "l") {
     $bin_type_display = "Lewa strona";
