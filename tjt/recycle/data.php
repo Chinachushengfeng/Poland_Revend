@@ -272,8 +272,8 @@ else
 
   if($totalvalue==$limited)
  {
-	 $sql="update command set command=2";
-			 // mysqli_query($link,$sql);	
+	// $sql="update command set command=2";
+    // mysqli_query($link,$sql);	
   }
 			 
 			 
