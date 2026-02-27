@@ -72,6 +72,14 @@ include("function/sql.php");
 
 $transactionid= select('command','transactionid');
 
+ $bottle= select('command','bottle');
+$can= select('command','can');
+
+
+
+
+
+
 $sql="select count(transactionid) as bottleQty from user_transaction where transactionid='$transactionid' and  metal='0' and recognitionstatus=1 and print_barcode='0'";
 $bottleQty=  mysqli_query($link,$sql);
 $bottleQty=mysqli_fetch_array($bottleQty);
@@ -94,7 +102,7 @@ mysqli_query($link,$sql);
 
  
 
- if ($canQty+$bottleQty>0)
+ if (($can+$bottle )>0)
  {
 	 
 	  

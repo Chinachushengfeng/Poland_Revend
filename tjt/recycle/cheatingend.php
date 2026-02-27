@@ -88,6 +88,34 @@ include("function/sql.php");
 
 $transactionid= select('command','transactionid');
 
+
+$metal = select('command','metal');
+$bottle = select('command','bottle');
+
+$can = select('command','can');
+
+ 
+			
+		 
+if($metal==0)
+{
+
+		$sql = "update command set bottle=bottle-1"; 
+		mysqli_query($link, $sql);
+
+}
+else
+{
+	
+		$sql = "update command set can=can-1"; 
+		mysqli_query($link, $sql);
+	
+}
+ 
+ 
+ 
+ 
+ 
 $sql="select count(transactionid) as bottleQty from user_transaction where transactionid='$transactionid' and  metal='0' and recognitionstatus=1 and print_barcode='0'";
 $bottleQty=  mysqli_query($link,$sql);
 $bottleQty=mysqli_fetch_array($bottleQty);
@@ -104,13 +132,13 @@ $canQty=$canQty['canQty'];
  
  
   
-$sql="update user_transaction set  transactiondone=4  where transactionid='$transactionid'";//標記結束transaction 4=crusher问题   //每次在載入首頁時候會檢查是否有0標記並上傳。
+$sql="update user_transaction set  transactiondone=5  where transactionid='$transactionid'";//標記結束transaction 4=crusher问题 標記結束transaction 5=两次欺诈结束   //每次在載入首頁時候會檢查是否有0標記並上傳。
 mysqli_query($link,$sql);
 
 
  
 
- if ($canQty+$bottleQty>0)
+ if ( ($can+$bottle)>0)
  {
 	 
 	  

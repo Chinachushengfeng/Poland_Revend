@@ -63,7 +63,29 @@ $result = mysqli_query($link, $sql);
 $result = mysqli_fetch_array($result);
 		$transactionid = $result['transactionid'];
 		 
-		
+		$metal = $result['metal'];
+		 
+			
+		 
+if($metal==0)
+{
+
+		$sql = "update command set bottle=bottle-1"; 
+		mysqli_query($link, $sql);
+
+}
+else
+{
+	
+		$sql = "update command set can=can-1"; 
+		mysqli_query($link, $sql);
+	
+}
+ 
+ 
+ 
+ 
+ 
  ?>
  
  
