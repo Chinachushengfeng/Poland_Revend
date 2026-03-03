@@ -15,7 +15,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #cdd2d8 0%, #cdd2d8 100%);
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
@@ -34,7 +34,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            background: linear-gradient(135deg, #006835 0%, #006835 100%);
             color: white;
             padding: 40px;
             text-align: center;
@@ -104,7 +104,7 @@
             padding: 25px;
             margin-bottom: 40px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            border-left: 6px solid #1a2980;
+            border-left: 6px solid #1b6e44;
             position: relative;
             overflow: hidden;
         }
@@ -116,11 +116,11 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(to right, #1a2980, #26d0ce);
+            background: linear-gradient(to right, #1b6e44, #1b6e44);
         }
         
         .info-box h3 {
-            color: #1a2980;
+            color: #000;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -224,7 +224,7 @@
             left: 0;
             right: 0;
             height: 6px;
-            background: linear-gradient(to right, #1a2980, #26d0ce);
+            background: linear-gradient(to right, #006835, #006835);
         }
         
         .barcode-card:hover {
@@ -245,13 +245,13 @@
             font-family: 'Courier New', monospace;
             font-size: 1.4rem;
             font-weight: 700;
-            color: #1a2980;
+            color: #1b6e44;
             letter-spacing: 1.5px;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .barcode-id {
-            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            background: linear-gradient(135deg, #006835 , #006835 );
             color: white;
             padding: 8px 18px;
             border-radius: 25px;
@@ -347,7 +347,7 @@
         footer {
             text-align: center;
             padding: 30px;
-            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            background: linear-gradient(135deg, #006835 0%, #006835 100%);
             color: white;
             margin-top: 40px;
         }
@@ -624,7 +624,7 @@ echo json_encode($data, JSON_UNESCAPED_UNICODE);
         fontSize: 18,
         margin: 12,
         background: "transparent",
-        lineColor: "#1a2980"
+        lineColor: "#1b6e44"
     });
 });
             }
