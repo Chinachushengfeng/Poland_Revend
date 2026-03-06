@@ -498,6 +498,16 @@ $(function () {
 	
 				}
 } 
+
+	 else if (data.success == "99") {
+
+ 
+ setTimeout("javascript:location.href='thanks.php'", 500); 
+
+
+ 						} 
+
+
 				 else if (data.success == "44") {
 
  

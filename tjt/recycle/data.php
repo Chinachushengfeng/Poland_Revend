@@ -110,6 +110,8 @@ $weight=strval(select("command","weight")*0.1);
  
   $errorcode=select("command","errorcode");
  
+   $bottle=select("command","bottle");
+   $can=select("command","can");
  
 
  
@@ -137,7 +139,7 @@ $bottlevalue= 5;
  $storageplastic=select("command","storageplastic");
   $storagecan=select("command","storagecan");
  
- $limited=select("command","limitedvalue");
+ $limited=30;
  $octreceipt=select("ocl","receipt");
 
  
@@ -147,7 +149,46 @@ $transactiondone='0';
 
 	
 
+					
+  
+ $totalqty=$can+$bottle;
+ 
+ 
+  if($totalqty==$limited)
+ {
+ 	
+	   
+    
+		  	 
+ set_time_limit(100000);//无限请求超时时间    
+$i=0;    
+while (true){    
+    //sleep(1);    
+    usleep(100000);//0.5秿   
+    $i++;    
+        
+  
+        
+      
+        $arr=array('success'=>"99",'num'=>'0','value'=>$barcode);     //结束限制到了
+        echo json_encode($arr);    
+      
+       exit(); 
+}
 
+ 
+ 
+  
+
+
+
+		} 
+			  
+	 
+	 
+	 
+	
+	
 
 
 
@@ -203,14 +244,7 @@ $transactiondone='0';
 				  
 				  
 				  
-			 
-				   
-				  
-				  
-				  
-				  
-				    
-				  
+			  
  $sql="insert into user_transaction  (user,transactionid,dateline,barcode,metal,weight,bors,diam,recognitionstatus,rebateordonate,bottlevalue,payplatform) 
 			  
 			  values ('$user','$transactionid','$dateline','$barcode','$metal','$weight','$bors','$diam','1','0','$bottlevalue','$payplatform')";
@@ -225,15 +259,7 @@ $transactiondone='0';
 		 	  $sql="update command set recognitionstatus=0 ,diam=0,weight=0 ";
 			 mysqli_query($link,$sql);	 
 			 
-			 
 			  
-			 
-			 
-			 
-			 
-			 
-			 
-			 
 			 
 			 
 			 
@@ -264,18 +290,7 @@ else
     echo json_encode($arr); 
 					
 					
-					
- 
- 
-
-
-
-  if($totalvalue==$limited)
- {
-	// $sql="update command set command=2";
-    // mysqli_query($link,$sql);	
-  }
-			 
+ 		 
 			 
 			 
 			 
@@ -339,22 +354,19 @@ else
         $arr=array('success'=>"55",'num'=>'0','value'=>$barcode);     //2次欺诈
         echo json_encode($arr);    
 	
-	
 }	
+
+
+
+
 
  
  	    
-       $sql="insert into user_transaction  (user,transactionid,dateline,statecode,barcode,weight,bors,diam,recognitionstatus,charityid,rebateordonate,bottlevalue,payplatform,charityname,octreceipt)
+$sql="UPDATE user_transaction  SET recognitionstatus = '44'   ORDER BY id DESC  LIMIT 1;" ;
   
-  values ('$user','$transactionid','$dateline','$statecode','$barcode','$weight','$bors','$diam','44','$charityid','$rebateordonate','$bottlevalue','$payplatform','$charityname','$octreceipt')";
-  
-  
-  //echo  $transactionid,$dateline,$statecode,$user,$barcode,$brand,$bottleinfo,$weight,$recognitionstatus,$rebateordonate,$bottlevalue;
- 
-
-			mysqli_query($link,$sql);	 
- $sql="update command set recognitionstatus=0 ,diam=0,weight=0";
- mysqli_query($link,$sql);	 
+mysqli_query($link,$sql);	 
+$sql="update command set recognitionstatus=0 ,diam=0,weight=0";
+mysqli_query($link,$sql);	 
  
  
  
