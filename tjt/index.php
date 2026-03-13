@@ -261,8 +261,9 @@ mysqltorepair("alipay");
   
   
   
-
-        if ($pjuli <= 15   ) {
+ 
+		
+		    if ($pjuli <= 15  and $pjuli>0    and  $pjuli ) {
          
 			 
 			
@@ -271,7 +272,7 @@ mysqltorepair("alipay");
    exit;
         }
 		
-		
+		 
 
         if ($cjuli <= 15  and  $cjuli  and $cjuli >0 ) {
          
