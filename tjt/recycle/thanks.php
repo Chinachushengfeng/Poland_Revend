@@ -63,12 +63,12 @@ $can= select('command','can');
 
 
 
-$sql="select count(transactionid) as bottleQty from user_transaction where transactionid='$transactionid' and  metal='0' and recognitionstatus=1 and print_barcode='0'";
-$bottleQty=  mysqli_query($link,$sql);
-$bottleQty=mysqli_fetch_array($bottleQty);
-$bottleQty=$bottleQty['bottleQty'];		
+//$sql="select count(transactionid) as bottleQty from user_transaction where transactionid='$transactionid' and  metal='0' and recognitionstatus=1 and print_barcode='0'";
+//$bottleQty=  mysqli_query($link,$sql);
+//$bottleQty=mysqli_fetch_array($bottleQty);
+//$bottleQty=$bottleQty['bottleQty'];		
  
- echo $bottleQty;
+ echo $bottle;
 
 
 
@@ -83,12 +83,12 @@ $bottleQty=$bottleQty['bottleQty'];
                             <div class="number"> <?php
 							
 
-$sql="select count(transactionid) as canQty from user_transaction where transactionid='$transactionid' and  metal='1' and recognitionstatus=1 and print_barcode='0'";
-$canQty=  mysqli_query($link,$sql);
-$canQty=mysqli_fetch_array($canQty);
-$canQty=$canQty['canQty'];		
+//$sql="select count(transactionid) as canQty from user_transaction where transactionid='$transactionid' and  metal='1' and recognitionstatus=1 and print_barcode='0'";
+//$canQty=  mysqli_query($link,$sql);
+//$canQty=mysqli_fetch_array($canQty);
+//$canQty=$canQty['canQty'];		
  
- echo $canQty;
+ echo $can;
 
  
  
