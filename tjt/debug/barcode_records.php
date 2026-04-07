@@ -462,7 +462,7 @@
             </div>
         </header>
         
-         <a href="../index.php" class="back-link">
+         <a href="../debug" class="back-link">
 		   <h3 style='margin-right:800px;   display: inline-flex;
             align-items: center;
             padding: 8px 16px;
