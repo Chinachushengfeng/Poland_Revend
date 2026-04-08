@@ -129,6 +129,19 @@ $metal=select("barcode where barcode='$barcode'","metal");
 	  $metal=0;
   }
   
+    if(!$barcode )
+  {
+	  $barcode='null_problem';
+  }
+  
+
+      if(!$charityname )
+  {
+	  $charityname='non_charityname';
+  }
+   
+ 
+
 if (!$bottlevalue)
 {
 $bottlevalue= 5;
@@ -146,10 +159,7 @@ $bottlevalue= 5;
  
 $transactiondone='0';
  
-
-	
-
-					
+ 
   
  $totalqty=$can+$bottle;
  
@@ -245,15 +255,37 @@ while (true){
 				  
 				  
 			  
- $sql="insert into user_transaction  (user,transactionid,dateline,barcode,metal,weight,bors,diam,recognitionstatus,rebateordonate,bottlevalue,payplatform) 
+ $sql="insert into user_transaction  (user,transactionid,dateline,barcode,metal,weight,  recognitionstatus,rebateordonate,bottlevalue,payplatform) 
 			  
-			  values ('$user','$transactionid','$dateline','$barcode','$metal','$weight','$bors','$diam','1','0','$bottlevalue','$payplatform')";
+			  values ('$user','$transactionid','$dateline','$barcode','$metal','$weight', '1','0','$bottlevalue','$payplatform')";
 			    
-			  //echo  $transactionid,$dateline,$statecode,$user,$barcode,$brand,$bottleinfo,$weight,$recognitionstatus,$rebateordonate,$bottlevalue;
- 
-			 mysqli_query($link,$sql);	 
+  mysqli_query($link,$sql);	 
 			 
 			 
+
+
+if (!$result) {
+    // 错误信息
+    $error_no = mysqli_errno($link);
+    $error_msg = mysqli_error($link);
+    
+    // 1. 记录到PHP错误日志
+    error_log("[INSERT fail] 错误码:$error_no - $error_msg | SQL: $sql");
+    
+    // 2. 记录到单独的文件
+    $log_file = '/tmp/sql_errors.log';
+    $log_content = date('Y-m-d H:i:s') . " | 错误码: $error_no | 错误: $error_msg | SQL: $sql | 变量: user=$user, txn=$transactionid, barcode=$barcode\n";
+    file_put_contents($log_file, $log_content, FILE_APPEND);
+    
+    // 3. 如果是barcode为NULL的错误，特别记录
+    if ($error_no == 1048 && strpos($error_msg, 'barcode') !== false) {
+        error_log("【重要】barcode为NULL！user=$user, transactionid=$transactionid");
+    }
+}
+
+
+
+
 			 
 				  
 		 	  $sql="update command set recognitionstatus=0 ,diam=0,weight=0 ";
