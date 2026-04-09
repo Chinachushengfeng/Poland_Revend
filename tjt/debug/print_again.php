@@ -8,7 +8,7 @@ $bottle = $_GET['bottle'];
 include('incdb.php');
 
 // 修正 SQL 语法：mysqli_query(连接, SQL语句)
-$sql = "UPDATE command SET command=2, printer_barcode='$print_barcode', bottle='$bottle', can='$can'";
+$sql = "UPDATE command SET command=8, printer_barcode='$print_barcode', bottle='$bottle', can='$can'";
 
 // 执行查询
 $result = mysqli_query($link, $sql);

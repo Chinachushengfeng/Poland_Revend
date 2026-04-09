@@ -314,13 +314,20 @@ $sql = "update command set userscan=0";
 <script>
 function validateForm() {
     const inputField = document.getElementById('inputField');
-    const value = inputField.value.trim();
-    
+    // 优先使用用户输入的值，如果没有则使用 placeholder
+    let value = inputField.value.trim();
     if (value === '') {
-        alert('数据不能为空');
-        return false;  // 阻止表单提交
+        value = inputField.placeholder.trim();
     }
-    return true;  // 允许提交
+    
+    if (value === '' || value === 'Zeskanuj plombę przykładając ją do skanera po prawej stronie.' || value === 'wrong') {
+        alert('Brak danych do wysłania!');  // 没有数据可发送
+        return false;
+    }
+    
+    // 可选：将最终值赋给 input field
+    inputField.value = value;
+    return true;
 }
 </script>
 
