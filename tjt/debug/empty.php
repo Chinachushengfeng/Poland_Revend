@@ -118,6 +118,9 @@
             display: none;
             align-items: center;
             justify-content: center;
+            	
+			margin-left:65px;
+			margin-top:-600px;
         }
         .overlay.active {
             display: flex;
