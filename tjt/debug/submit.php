@@ -4,9 +4,10 @@ include("IncDB.php");
 date_default_timezone_set('Europe/Warsaw'); 
 $thetime=time();
 $bin_barcode=$_GET['bin_barcode'];
+$storage_type=$_GET['storage_type'];
 
-$bin_type = substr($bin_barcode,0,1);
-$barcode=substr($bin_barcode,1);
+$bin_type = $storage_type ;
+$barcode= $bin_barcode;
 
  
 // 判断 $barcode 是否存在，并且包含至少 3 个数字
@@ -44,7 +45,6 @@ if ($bin_type == "l") {
     $bin_type_display = "Prawa strona";
     $bin_type = "right";
 }
-
 // 插入新记录
 $sql = "INSERT INTO empty_record (mid, dateline, bin_type, barcode) VALUES ('$mid','$thetime','$bin_type','$barcode')";
 mysqli_query($link, $sql);

@@ -298,6 +298,7 @@ $sql = "update command set userscan=0";
 
  
 
+
 <form id="bottomForm" action="submit.php" method="get" onsubmit="return validateForm();">
     <div class="overlay" id="overlay">
         <div class="input-modal" id="modal">
@@ -305,6 +306,10 @@ $sql = "update command set userscan=0";
             <button type="button" class="close-x-btn" onclick="closeModal();">&times;</button>
             
             <h2 id="modalTitle" style='font-size:40px'>Wprowadź treść</h2>
+            
+            <!-- 添加隐藏字段 -->
+            <input type="hidden" id="storageType" name="storage_type" value="">
+            
             <input type="text" id="inputField" name="bin_barcode" placeholder="Zeskanowana plomba:"> 
             <button type="button" class="reset-btn" onclick="document.getElementById('inputField').value = '';">wyczyść</button>
             <button type="submit" class="close-btn">zaakceptuj number plomby</button> 
@@ -376,10 +381,18 @@ function stopPolling() {
 function openModal(bin) {
     currentBin = bin;
     modalTitle.textContent = bin === 'left' ? 'Lewy kosz' : 'Prawy kosz';
+    
+    // 设置隐藏字段的值
+    const storageTypeInput = document.getElementById('storageType');
+    if (storageTypeInput) {
+        storageTypeInput.value = bin === 'left' ? 'l' : 'r';
+    }
+    
     inputField.value = '';
     overlay.classList.add('active');
     startPolling();
 }
+
 
 // ✅ 关闭 modal，并停止轮询
 function closeModal() {
