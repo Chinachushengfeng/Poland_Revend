@@ -68,9 +68,17 @@ $can= select('command','can');
 //$bottleQty=mysqli_fetch_array($bottleQty);
 //$bottleQty=$bottleQty['bottleQty'];		
  
- echo $bottle;
+$sql="SELECT count(id) as bottleQTY from user_transaction where recognitionstatus=1 and metal=0 and transactionid='$transactionid'";
+ $bottleQTY=  mysqli_query($link,$sql);
+ $bottleQTY=mysqli_fetch_array($bottleQTY);
+ $bottleQTY=$bottleQTY['bottleQTY'];	
+
+ echo $bottleQTY;
 
 
+  
+$sql="update command set  bottle='$bottleQTY'  ";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
+mysqli_query($link,$sql);
 
 							?></div>
                         </div>
@@ -88,9 +96,18 @@ $can= select('command','can');
 //$canQty=mysqli_fetch_array($canQty);
 //$canQty=$canQty['canQty'];		
  
- echo $can;
+$sql="SELECT count(id) as canQTY from user_transaction where recognitionstatus=1 and metal=1 and transactionid='$transactionid'";
+ $canQTY=  mysqli_query($link,$sql);
+ $canQTY=mysqli_fetch_array($canQTY);
+ $canQTY=$canQTY['canQTY'];	
+
+ echo $canQTY;
 
  
+
+   
+$sql="update command set  can='$canQTY'  ";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
+mysqli_query($link,$sql);
  
  
   
