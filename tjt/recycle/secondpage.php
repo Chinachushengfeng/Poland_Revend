@@ -81,7 +81,20 @@ document.addEventListener('dragstart', e => e.preventDefault());   // 禁止拖�
         </div>
 
     </div>
-	
+	<?php 
+    
+    
+    
+ include("incdb.php");
+
+		 
+
+		$sql = "update command set bottle=0,can=0"; 
+		mysqli_query($link, $sql);
+		
+		
+
+    ?>
 	    <script>
         function startCountdown() {
             let timeElement = document.getElementById('time');
@@ -104,5 +117,7 @@ document.addEventListener('dragstart', e => e.preventDefault());   // 禁止拖�
         window.onload = startCountdown; // 页面加载时开始倒计时
     </script>
 </body>
+
+
 
 </html>
