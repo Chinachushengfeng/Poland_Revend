@@ -519,7 +519,7 @@ Aktualnie wyświetlanych jest 100 ostatnio wydrukowanych kodów kreskowych.
     </div>
 
     <script>
-        // Pobieranie danych z PHP - tutaj symulujemy dane z bazy danych
+            // Pobieranie danych z PHP - tutaj symulujemy dane z bazy danych
         // W rzeczywistości dane te będą generowane dynamicznie przez PHP
 // 直接将PHP数组转换为JavaScript对象
 const barcodeData = <?php
@@ -532,11 +532,13 @@ $sql = "SELECT
     ut.transactionid,
     ut.recognitionstatus,
     ut.id,
-    COUNT(*) as record_count  -- 直接使用COUNT
+    COUNT(*) as record_count,
+    SUM(CASE WHEN ut.metal = 0 THEN 1 ELSE 0 END) as bottle_count,
+    SUM(CASE WHEN ut.metal = 1 THEN 1 ELSE 0 END) as can_count
 FROM user_transaction ut
 WHERE ut.recognitionstatus = 1
 GROUP BY ut.transactionid
-ORDER BY MAX(ut.id) DESC  -- 使用MAX来排序
+ORDER BY MAX(ut.id) DESC
 LIMIT 100";
 
 $result = mysqli_query($link, $sql);
@@ -608,9 +610,27 @@ echo json_encode($data, JSON_UNESCAPED_UNICODE);
             </div>
             <div class="additional-info" style="margin-top: 10px; font-size: 0.9em;">
                 <div>Numer transakcji: ${item.transactionid || ''}</div> 
-                <div>Pomyślnie odzyskano: ${item.record_count || 0}</div>
+            <div><strong style="font-weight: 700; font-size: 1.1em;">Łączna liczba: ${item.record_count || 0}</strong></div>
+                <div>Butelki (PET): ${item.bottle_count || 0}</div>
+                <div>Puszki: ${item.can_count || 0}</div>
+			
+<div style="text-align: right;">
+  <a href='print_again.php?bottle=${item.bottle_count}&can=${item.can_count}&print_barcode=${item.print_barcode}'>
+    <div type='button' style="display: inline-block; border: 1px solid #4C7D3C; padding: 12px 24px; border-radius: 8px; background: white; color: #4C7D3C; cursor: pointer; font-size: 16px; font-weight: 600; transition: all 0.3s ease;">
+        Print again
+    </div>
+</a>
+</div>
+
+
+
+
+
             </div>
-        </div>`;
+			
+			  </div>
+			  
+			  `;
 });
                 
                 barcodesList.innerHTML = barcodesHTML; 

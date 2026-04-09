@@ -69,7 +69,7 @@ while (true){
     $i++;    
         
       
-        $arr=array('success'=>"0",'num'=>'1','value'=>"1");    
+        $arr=array('success'=>"0",'num'=>'1','value'=>"0");    
         echo json_encode($arr);    
         exit();  
 

@@ -52,7 +52,38 @@
 			
         }
 		
-		
+		.close-x-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #ef4444;  /* 醒目的红色 */
+    color: white;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;  /* 圆形 */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* 悬停效果 */
+.close-x-btn:hover {
+    background: #dc2626;  /* 更深红色 */
+    transform: scale(1.1);  /* 放大一点 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 点击效果 */
+.close-x-btn:active {
+    transform: scale(0.95);
+}
 		
         .btn-box {
             flex: 1;
@@ -92,6 +123,7 @@
             display: flex;
         }
         .input-modal {
+			  position: relative;
             background: white;
             border-radius: var(--radius);
             padding: 40px;
@@ -113,8 +145,8 @@
 			
         }
         .close-btn {
-            margin-top: 20px;
-            padding: 40px 28px;
+            margin-top: 40px;
+            padding: 30px 28px;
             border-radius: 8px;
             background: var(--accent);
             color: white;
@@ -156,12 +188,35 @@
             cursor: pointer;
             font-size: 2rem;
         }
-        .reset-btn {
-            background: #e5e7eb;
-            color: #111827;
-			
-			
-        }
+     .reset-btn {
+    margin-top: 40px;
+    padding: 30px 28px;
+    border-radius: 8px;
+    background: #fff;  /* 改成灰色 */
+    color: #000;
+        border: 1px solid #000;  /* 黑框 1px */
+    cursor: pointer;
+    font-size: 30px;
+    transition: all 0.2s ease;  /* 新增：平滑过渡 */
+}
+.btn-box.disabled {
+    background: #9ca3af !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    pointer-events: none;  /* 禁止点击 */
+}
+
+
+/* 悬停效果 */
+.reset-btn:hover {
+    background: #4b5563;  /* 深灰色 */
+}
+
+/* 点击效果 */
+.reset-btn:active {
+    background: #374151;  /* 更深灰色 */
+    transform: scale(0.98);
+}
         .confirm-btn {
             background: var(--accent);
             color: white;
@@ -221,52 +276,73 @@ $sql = "update command set userscan=0";
 ?>
 
 
+ <img src='img/logo.jpg' width='210px' style='position:absolute;top:20px'>
+<div class="wrap">
+    <div class="top">Tryb wymiany worka w urządzenia</div>
+</div>
+
+<div style='margin-top:300px; left: 20%;top:15%; position:absolute;font-size:30px;color:black;font-family:bold'>Wybierz kosz w którym chcesz wymienić worek:</div>
+<div class="wrap">
+    <div class="btn-box left" id="leftBtn" style='text-align:center'>LEWY KOSZ <br>(Butelki PET)</div>
+  
+
+
+  <div class="btn-box right" id="rightBtn" style='text-align:center'>PRAWY KOSZ <br>(Puszki)</div>
+	
+	
+	
+</div>
 
  
 
-<img src='img/logo.jpg' width='210px' style='position:absolute;top:20px'>
-   <div class="wrap">
-        <div class="top"   >Tryb wymiany worka w urządzenia</div>
-         
-    </div>
-	
-	
-
-
-    <div style='margin-top:300px; left: 20%;top:15%; position:absolute;font-size:30px;color:black;font-family:bold'>Wybierz kosz w którym chcesz wymienić worek:</div>
-    <div class="wrap">
-        <div class="btn-box left" id="leftBtn" style='text-align:center'  >LEWY KOSZ <br>(Butelki PET)</div>
-        <div class="btn-box right" id="rightBtn" style='text-align:center'>PRAWY KOSZ <br>(Puszki)</div>
-    </div>
+<form id="bottomForm" action="submit.php" method="get" onsubmit="return validateForm();">
     <div class="overlay" id="overlay">
         <div class="input-modal" id="modal">
+            <!-- 添加 X 关闭按钮 -->
+            <button type="button" class="close-x-btn" onclick="closeModal();">&times;</button>
+            
             <h2 id="modalTitle" style='font-size:40px'>Wprowadź treść</h2>
-            <input type="text" id="inputField" placeholder="Zeskanowana plomba:">
-            <button class="close-btn" id="closeBtn">zamknięcie</button>
-        </div>
-    </div>
-<form id="bottomForm" action="submit.php" method="get">
-    <!-- ✅ 隐藏字段，用来同步 bottomText 的内容 -->
-    <input type="hidden" id="bottomTextValue" name="bin_barcode" value="">
-    <div class="bottom-bar">
-        <div class="bottom-text" id="bottomText">Proszę zeskanować kod QR</div>
-        <div class="bottom-actions">
-            <button type="reset" class="reset-btn" id="resetBtn">Nastawić</button>
-            <button type="submit" class="confirm-btn">Zaakceptuj number plomby</button>
+            <input type="text" id="inputField" name="bin_barcode" placeholder="Zeskanowana plomba:"> 
+            <button type="button" class="reset-btn" onclick="document.getElementById('inputField').value = '';">wyczyść</button>
+            <button type="submit" class="close-btn">zaakceptuj number plomby</button> 
         </div>
     </div>
 </form>
-   <button class="back-button"  style=' ' onclick="window.location.href='http://127.0.0.1/tjt/debug/'">
-                ← Powrót do ekranu serwisowego
-            </button>
-    <script src="js/jquery-1.9.1.min.js"></script>
-    <script>
-	const bottomForm = document.getElementById('bottomForm');
+
+
+
+<script>
+function validateForm() {
+    const inputField = document.getElementById('inputField');
+    const value = inputField.value.trim();
+    
+    if (value === '') {
+        alert('数据不能为空');
+        return false;  // 阻止表单提交
+    }
+    return true;  // 允许提交
+}
+</script>
+
+
+<button class="back-button" style=' ' onclick="window.location.href='http://127.0.0.1/tjt/debug/'">
+    ← Powrót do ekranu serwisowego
+</button>
+
+<!-- 添加一个隐藏的或可见的 bottomText 元素，如果不需要可以删除相关代码 -->
+<div id="bottomText" style="display:none;"></div>
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script>
+const bottomForm = document.getElementById('bottomForm');
 const bottomTextValue = document.getElementById('bottomTextValue');
 
-bottomForm.addEventListener('submit', function() {
-    bottomTextValue.value = bottomText.textContent.trim();
-});
+// 如果 bottomTextValue 不存在，跳过这个事件监听
+if (bottomForm && bottomTextValue) {
+    bottomForm.addEventListener('submit', function() {
+        bottomTextValue.value = bottomText.textContent.trim();
+    });
+}
 
 const overlay = document.getElementById('overlay');
 const modalTitle = document.getElementById('modalTitle');
@@ -274,26 +350,35 @@ const inputField = document.getElementById('inputField');
 const leftBtn = document.getElementById('leftBtn');
 const rightBtn = document.getElementById('rightBtn');
 const closeBtn = document.getElementById('closeBtn');
-const bottomText = document.getElementById('bottomText');
-const resetBtn = document.getElementById('resetBtn');
+const bottomText = document.getElementById('bottomText'); 
 let currentBin = '';
 let pollingInterval = null;
+
+// ✅ 添加 stopPolling 函数
+function stopPolling() {
+    if (pollingInterval) {
+        clearInterval(pollingInterval);
+        pollingInterval = null;
+    }
+}
 
 // ✅ 打开 modal，并启动轮询
 function openModal(bin) {
     currentBin = bin;
-    modalTitle.textContent = bin === 'left' ? 'Lewy kosz na śmieci' : 'Kosz do recyklingu po lewej stronie';
+    modalTitle.textContent = bin === 'left' ? 'Lewy kosz' : 'Prawy kosz';
     inputField.value = '';
     overlay.classList.add('active');
-    startPolling(); // ← 打开对话框时开始轮询
+    startPolling();
 }
 
 // ✅ 关闭 modal，并停止轮询
 function closeModal() {
     const val = inputField.value.trim() || inputField.placeholder;
-    bottomText.textContent = `${currentBin === 'left' ? 'l' : 'r'} ${val}`;
+    if (bottomText) {
+        bottomText.textContent = `${currentBin === 'left' ? 'l' : 'r'} ${val}`;
+    }
     overlay.classList.remove('active');
-    stopPolling(); // ← 关闭对话框时停止轮询
+    stopPolling();
 }
 
 // ✅ 轮询 data.php
@@ -309,8 +394,10 @@ function startPolling() {
             data: { time: "5000" },
             success: function(data) {
                 if (data.success == "1") {
-                    inputField.placeholder = data.msg || data.value;
-                    if (!overlay.classList.contains('active')) {
+                    const prefix = currentBin === 'left' ? 'l' : 'r';
+                    inputField.placeholder = prefix + (data.msg || data.value);
+                    
+                    if (bottomText && !overlay.classList.contains('active')) {
                         bottomText.textContent = `最新数据: ${data.msg}`;
                     }
                 } else {
@@ -318,7 +405,7 @@ function startPolling() {
                 }
             },
             error: function() {
-                inputField.placeholder = "请求出错";
+                inputField.placeholder = "wrong";
             }
         });
     }
@@ -327,35 +414,80 @@ function startPolling() {
     pollingInterval = setInterval(poll, 3000);
 }
 
-// ✅ 停止轮询
-function stopPolling() {
-    if (pollingInterval) {
-        clearInterval(pollingInterval);
-        pollingInterval = null;
-    }
+// ✅ 事件绑定
+if (leftBtn) {
+    leftBtn.addEventListener('click', () => openModal('left'));
 }
 
-// ✅ 事件绑定
-leftBtn.addEventListener('click', () => openModal('left'));
-rightBtn.addEventListener('click', () => openModal('right'));
-closeBtn.addEventListener('click', closeModal);
-resetBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    bottomText.textContent = 'Oczekiwanie na dane';
+if (rightBtn) {
+    rightBtn.addEventListener('click', (e) => {
+        // 如果按钮有 disabled 类，阻止点击
+        if (rightBtn.classList.contains('disabled')) {
+            e.preventDefault();
+            return false;
+        }
+        openModal('right');
+    });
+}
+
+if (closeBtn) closeBtn.addEventListener('click', closeModal);
+if (overlay) {
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+    });
+}
+
+
+ 
+</script>
+
+<script>
+// 读取 storagebox.txt 并判断右边按钮状态
+function checkRightButtonStatus() {
+    const rightBtn = document.getElementById('rightBtn');
+    if (!rightBtn) return;
+    
+    $.ajax({
+        type: "GET",
+        url: "../../storagebox.txt",
+        dataType: "text",
+        cache: false,
+        success: function(data) {
+            const content = data.trim();
+            if (content === "1") {
+                rightBtn.classList.add('disabled');
+                console.log("右边按钮已禁用 (storagebox.txt = 1)");
+            } else if (content === "2") {
+                rightBtn.classList.remove('disabled');
+                console.log("右边按钮已启用 (storagebox.txt = 2)");
+            } else {
+                rightBtn.classList.remove('disabled');
+                console.log("右边按钮已启用 (默认)");
+            }
+        },
+        error: function() {
+            rightBtn.classList.remove('disabled');
+            console.log("无法读取 storagebox.txt，默认启用按钮");
+        }
+    });
+}
+
+// 页面加载完成后检查
+$(document).ready(function() {
+    checkRightButtonStatus();
 });
-overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-});
+
+// 每3秒检查一次文件变化
+setInterval(checkRightButtonStatus, 3000);
 </script>
 
 
-    <script>
-        // 延迟 5 秒后跳转
-        setTimeout(() => {
-            window.location.href = "http://127.0.0.1";
-        }, 120000); // 5000 毫秒 = 5 秒
-    </script>
-	
+<script>
+    // 延迟 120 秒后跳转
+    setTimeout(() => {
+        window.location.href = "http://127.0.0.1";
+    }, 120000);
+</script>
 	
 </body>
 </html>

@@ -121,7 +121,7 @@ $result = mysqli_query($link, $sql);
         
         .bin-type.right {
             background-color: #4C7D3C;
-            color: #e74c3c;
+            color: #ffffff;
         }
         
         .barcode {
@@ -264,7 +264,7 @@ $result = mysqli_query($link, $sql);
 <body>
     <div class="container">
         <header>
-            <h1>Wyczyść rekordy</h1>
+            <h1>Lista zamkniętych plomb</h1>
         
 		
 		
@@ -277,23 +277,23 @@ $result = mysqli_query($link, $sql);
 		
 		
         <div class="status-info">
-            <h2>Najnowszy rekord</h2>
+            <h2>Ostatnio zamknięta plomba</h2>
             <div class="bin-type <?php echo $bin_type; ?>">
                 <?php echo $bin_type_display; ?>
             </div>
             <div class="barcode"><?php echo $barcode; ?></div>
-            <p>Ostatnie rekordy: <?php echo date('Y-m-d H:i:s', $thetime); ?></p>
+            <p>Czas zamknięcia worka: <?php echo date('Y-m-d H:i:s', $thetime); ?></p>
         </div>
         
         <div class="records-table">
-            <h2>Historia rekordów (ostatnie 200)</h2>
+            <h2>Historia plomb (ostatnie 200)</h2>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>Data i czas</th>
-                            <th>Typ skrzynki</th>
-                            <th>Kod kreskowy</th>
+                            <th>Pojemnik</th>
+                            <th>Numer plomby</th>
                         </tr>
                     </thead>
                     <tbody>
