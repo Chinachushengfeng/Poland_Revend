@@ -329,7 +329,16 @@ function validateForm() {
     }
     
     if (value === '' || value === 'Zeskanuj plombę przykładając ją do skanera po prawej stronie.' || value === 'wrong') {
-        alert('Brak danych do wysłania!');  // 没有数据可发送
+        // 使用 SweetAlert2 美化提示
+        Swal.fire({
+            icon: 'warning',
+            title: 'Brak danych!',
+            text: 'Nie ma danych do wysłania',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#f39c12',
+            background: '#fff',
+            iconColor: '#f39c12'
+        });
         return false;
     }
     
@@ -511,6 +520,7 @@ setInterval(checkRightButtonStatus, 3000);
         window.location.href = "http://127.0.0.1";
     }, 120000);
 </script>
-	
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
