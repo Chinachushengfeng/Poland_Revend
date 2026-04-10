@@ -340,7 +340,7 @@ if(!$totalbottlevalue)
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_SSLVERSION, 1);
     
- $response = curl_exec($ch);
+ //$response = curl_exec($ch);
 
 if(curl_errno($ch))
 {

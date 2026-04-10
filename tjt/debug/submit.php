@@ -36,22 +36,6 @@ $mid=$result['mid'];
 
 
 
-   
-
-if ($bin_type == "l") {
-    $bin_type_display = "Lewa strona";
-    $bin_type = "left";
-} else {
-    $bin_type_display = "Prawa strona";
-    $bin_type = "right";
-}
-// 插入新记录
-$sql = "INSERT INTO empty_record (mid, dateline, bin_type, barcode) VALUES ('$mid','$thetime','$bin_type','$barcode')";
-mysqli_query($link, $sql);
- 
-// 获取最新记录
-$sql = "SELECT * FROM empty_record ORDER BY id DESC LIMIT 200";
-$result = mysqli_query($link, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -261,7 +245,54 @@ $result = mysqli_query($link, $sql);
         }
     </style>
 </head>
-<body>
+ <body leftmargin=0 topmargin=0 oncontextmenu='return false' ondragstart='return false' onselectstart='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false'>
+ 
+<?php 
+error_reporting(0);
+
+
+
+
+
+if (!$bin_type || !$barcode)
+{
+    $backUrl = htmlspecialchars($_SERVER['HTTP_REFERER'] ?? 'javascript:history.back()');
+    
+    echo '<div style="text-align:center; padding:50px; font-family:Arial; margin-top:100px;text-align: center;
+            padding: 50px; align-items: center; justify-content: center;margin-top:600px
+			
+			">
+        <div style="font-size:60px;">Bład wymiany worka</div>
+        <h2 style="color:#4c7d3c;">Nie zeskanowano poprawnie plomby</h2>
+        <p style="font-size:18px; color:#333;">Wróć do poprzedniego ekranu i zeskanuj ponownie.<br>
+        
+        <p style="margin-top:30px; color:#666;">Za 5 sekund nastąpi automatyczny powrót...</p>
+        <a href="' . $backUrl . '" style="display:inline-block; margin-top:20px; padding:10px 25px; background:#4c7d3c; color:white; text-decoration:none; border-radius:5px;"> <— Wróć teraz</a>
+        <meta http-equiv="refresh" content="5;url=' . $backUrl . '">
+    </div>';
+    exit;
+}
+
+   
+
+if ($bin_type == "l") {
+    $bin_type_display = "Lewa strona";
+    $bin_type = "left";
+} else {
+    $bin_type_display = "Prawa strona";
+    $bin_type = "right";
+}
+
+// 插入新记录
+$sql = "INSERT INTO empty_record (mid, dateline, bin_type, barcode) VALUES ('$mid','$thetime','$bin_type','$barcode')";
+mysqli_query($link, $sql);
+ 
+// 获取最新记录
+ 
+// 继续正常代码...
+?>
+
+							
     <div class="container">
         <header>
             <h1>Lista zamkniętych plomb</h1>
@@ -271,10 +302,10 @@ $result = mysqli_query($link, $sql);
 		
 		
         </header>
-        <button class="back-button"  style='margin-top:-720px;margin-left:200px' onclick="window.location.href='http://127.0.0.1/tjt/debug/empty.php'">
-                ← Powrót
-            </button>
 		
+<button  style="position: fixed; top: 20px; left: 20px; z-index: 9999; background: #4c7d3c; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);" onclick="window.location.href='http://127.0.0.1/tjt/debug/empty.php'">
+    ← Powrót
+</button>
 		
         <div class="status-info">
             <h2>Ostatnio zamknięta plomba</h2>
@@ -296,33 +327,36 @@ $result = mysqli_query($link, $sql);
                             <th>Numer plomby</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php while($it = mysqli_fetch_array($result)): ?>
-                        <?php
-                            $thetime = $it['dateline'];
-                            $barcode = $it['barcode'];
-							
-							
 
-							
-                            $bin = $it['bin_type'];
-                            $date = date('Y-m-d H:i:s', $thetime);
-                            
-                            if ($bin == "left" || $bin == 1) {
-                                $bin_display = "Lewa strona";
-                                $bin_class = "bin-left";
-                            } else {
-                                $bin_display = "Prawa strona";
-                                $bin_class = "bin-right";
-                            }
-                        ?>
-                        <tr>
-                            <td class="timestamp"><?php echo $date; ?></td>
-                            <td><span class="bin-badge <?php echo $bin_class; ?>"><?php echo $bin_display; ?></span></td>
-                            <td class="barcode-cell"><?php echo $barcode; ?></td>
-                        </tr>
-                        <?php endwhile; ?>
-                    </tbody>
+
+<tbody>
+    <?php 
+    $sql = "SELECT * FROM empty_record ORDER BY id DESC LIMIT 200";
+    $result = mysqli_query($link, $sql);
+    
+    while($it = mysqli_fetch_assoc($result))  
+    {
+        // 使用每条记录自己的时间戳
+        $date = date('Y-m-d H:i:s', $it['dateline']);
+        
+        // 根据数据库中存储的 bin_type 判断显示内容
+        if ($it['bin_type'] == "left") {
+            $bin_display = "Lewa strona";
+            $bin_class = "bin-left";
+        } else {
+            $bin_display = "Prawa strona";
+            $bin_class = "bin-right";
+        }
+    ?>
+    <tr>
+        <td class="timestamp"><?php echo $date; ?></td>
+        <td><span class="bin-badge <?php echo $bin_class; ?>"><?php echo $bin_display; ?></span></td>
+        <td class="barcode-cell"><?php echo htmlspecialchars($it['barcode']); ?></td>
+    </tr>
+    <?php } ?>
+</tbody>
+
+
                 </table>
             </div>
         </div>
@@ -337,5 +371,6 @@ $result = mysqli_query($link, $sql);
             <p>System Zarządzania Skrzynkami &copy; <?php echo date('Y'); ?></p>
         </footer>
     </div>
+	 
 </body>
 </html>

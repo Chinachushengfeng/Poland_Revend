@@ -1,3 +1,6 @@
+
+
+
 <?php 
 error_reporting(0);
 
@@ -15,11 +18,12 @@ $result = mysqli_query($link, $sql);
 
 if ($result) {
     // 成功：显示提示并跳转
-    echo "<script>
-       alert('✅ Polecenie drukowania zostało wysłane. Sprawdź wydruk!');
-
-        window.location.href = document.referrer; // 返回上一页
-    </script>";
+        echo '<div style="text-align:center; padding:50px; font-family:Arial; margin-top:100px;">
+        <div style="font-size:60px;">Zrobione</div>
+        <h2 style="color:#4c7d3c;">Wydano polecenie drukowania, proszę sprawdzić.</h2> 
+        <a href="barcode_records.php" style="display:inline-block; margin-top:20px; padding:10px 25px; background:#4c7d3c; color:white; text-decoration:none; border-radius:5px;">← Wróć teraz</a>
+        <meta http-equiv="refresh" content="5;url=barcode_records.php">
+    </div>'; 
 } else {
     // 失败：显示错误信息
     echo "<script> 
@@ -30,3 +34,7 @@ if ($result) {
 // 可选：输出 SQL 用于调试（建议关闭）
 // echo $sql;
 ?>
+
+
+
+ 

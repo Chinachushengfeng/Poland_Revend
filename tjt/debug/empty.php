@@ -265,7 +265,8 @@
 		
     </style>
 </head>
-<body>
+ <body leftmargin=0 topmargin=0 oncontextmenu='return false' ondragstart='return false' onselectstart='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false'>
+ 
 <?php 
 
 include("IncDB.php");
@@ -284,7 +285,7 @@ $sql = "update command set userscan=0";
     <div class="top">Tryb wymiany worka w urządzenia</div>
 </div>
 
-<div style='margin-top:300px; left: 20%;top:15%; position:absolute;font-size:30px;color:black;font-family:bold'>Wybierz kosz w którym chcesz wymienić worek:</div>
+<div style='margin-top:300px; left: 20%;top:15%; position:absolute;font-size:30px;color:black;font-family:bold'>Wybierz kosz, w którym chcesz wymienić worek:</div>
 <div class="wrap">
     <div class="btn-box left" id="leftBtn" style='text-align:center'>LEWY KOSZ <br>(Butelki PET)</div>
   
@@ -298,7 +299,6 @@ $sql = "update command set userscan=0";
 
  
 
-
 <form id="bottomForm" action="submit.php" method="get" onsubmit="return validateForm();">
     <div class="overlay" id="overlay">
         <div class="input-modal" id="modal">
@@ -309,7 +309,7 @@ $sql = "update command set userscan=0";
             
             <!-- 添加隐藏字段 -->
             <input type="hidden" id="storageType" name="storage_type" value="">
-            
+                
             <input type="text" id="inputField" name="bin_barcode" placeholder="Zeskanowana plomba:"> 
             <button type="button" class="reset-btn" onclick="document.getElementById('inputField').value = '';">wyczyść</button>
             <button type="submit" class="close-btn">zaakceptuj number plomby</button> 
@@ -328,22 +328,8 @@ function validateForm() {
         value = inputField.placeholder.trim();
     }
     
-    if (value === '' || value === 'Zeskanuj plombę przykładając ją do skanera po prawej stronie.' || value === 'wrong') {
-        // 使用 SweetAlert2 美化提示
-        Swal.fire({
-            icon: 'warning',
-            title: 'Brak danych!',
-            text: 'Nie ma danych do wysłania',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#f39c12',
-            background: '#fff',
-            iconColor: '#f39c12'
-        });
-        return false;
-    }
-    
-    // 可选：将最终值赋给 input field
-    inputField.value = value;
+   
+     
     return true;
 }
 </script>
@@ -401,8 +387,6 @@ function openModal(bin) {
     overlay.classList.add('active');
     startPolling();
 }
-
-
 // ✅ 关闭 modal，并停止轮询
 function closeModal() {
     const val = inputField.value.trim() || inputField.placeholder;
@@ -413,7 +397,7 @@ function closeModal() {
     stopPolling();
 }
 
-// ✅ 轮询 data.php
+// ✅ 轮询 data.php 
 function startPolling() {
     if (pollingInterval) clearInterval(pollingInterval);
 
@@ -426,18 +410,24 @@ function startPolling() {
             data: { time: "5000" },
             success: function(data) {
                 if (data.success == "1") {
-                    const prefix = currentBin === 'left' ? 'l' : 'r';
-                    inputField.placeholder = prefix + (data.msg || data.value);
+                    // 修改这里：将 placeholder 改为 value
+                    inputField.value = (data.msg || data.value);
                     
+                    // placeholder 可以保留一个提示文字
+                    inputField.placeholder = "Zeskanowana plomba:";
+                     
                     if (bottomText && !overlay.classList.contains('active')) {
                         bottomText.textContent = `最新数据: ${data.msg}`;
                     }
                 } else {
                     inputField.placeholder = "Zeskanuj plombę przykładając ją do skanera po prawej stronie.";
+                    // 清空 input 的值
+                    inputField.value = '';
                 }
             },
             error: function() {
                 inputField.placeholder = "wrong";
+                inputField.value = '';
             }
         });
     }
@@ -481,7 +471,7 @@ function checkRightButtonStatus() {
     
     $.ajax({
         type: "GET",
-        url: "../../storagebox.txt",
+        url: "storagebox.txt",
         dataType: "text",
         cache: false,
         success: function(data) {
@@ -520,7 +510,7 @@ setInterval(checkRightButtonStatus, 3000);
         window.location.href = "http://127.0.0.1";
     }, 120000);
 </script>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	 
 
 </body>
 </html>
