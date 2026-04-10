@@ -62,10 +62,9 @@
     
  <?php 
  include("IncDB.php");
- 	$sql="update command set command = 0  ";
+ 	$sql="update command set command = 0 ,statecode=0";
  mysqli_query($link,$sql);
-			 
-
+ 
  
  ?>
  

@@ -34,6 +34,20 @@ error_reporting(0);
 date_default_timezone_set("PRC");
 $nowtime=time();
 
+
+
+
+include("incdb.php");
+
+
+$sql = "update command set bottle=0,can=0,statecode=0"; 
+mysqli_query($link, $sql);
+
+		
+	 
+
+
+
 if(!$_COOKIE["emailtime"])
 {
 	 
@@ -41,6 +55,8 @@ if(!$_COOKIE["emailtime"])
 email();
 exit;
 }
+
+
 
 
 

@@ -75,10 +75,6 @@ $result = mysqli_fetch_array($result);
  <script language="javascript" type="text/javascript"> 
 // 以下方式直接跳转
  
-// 以下方式定时跳转
-
-
- 
  
 setTimeout("javascript:location.href='service.php'", 120000); 
 

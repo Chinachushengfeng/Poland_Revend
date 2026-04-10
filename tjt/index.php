@@ -202,10 +202,8 @@ mysqltorepair("qcscode");
 mysqltorepair("alipay");
  
        
-  
-		 
-
-		$sql = "update command set userscan=0,isbottle=0,bottle=0,can=0"; 
+   
+		$sql = "update command set userscan=0,isbottle=0,bottle=0,can=0,statecode=0"; 
 		mysqli_query($link, $sql);
 		
 		

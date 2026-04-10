@@ -617,7 +617,7 @@ barcodesHTML += `
 <div style="text-align: right;">
   <a href='print_again.php?bottle=${item.bottle_count}&can=${item.can_count}&print_barcode=${item.print_barcode}'>
     <div type='button' style="display: inline-block; border: 1px solid #4C7D3C; padding: 12px 24px; border-radius: 8px; background: white; color: #4C7D3C; cursor: pointer; font-size: 16px; font-weight: 600; transition: all 0.3s ease;">
-        Print again
+        Drukuj ponownie
     </div>
 </a>
 </div>

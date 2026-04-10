@@ -37,6 +37,18 @@ Proszę usunąć obcy przedmiot  <p style='margin-left:110px'> i spróbuj odzysk
   
   
  
+	 <?php  
+	 
+	 include("incdb.php");
+	 
+	 
+	 	$sql = "update command set bottle=0,can=0,statecode=0"; 
+		mysqli_query($link, $sql);
+		
+		
+		?>
+		
+		
  
  
  
