@@ -593,15 +593,15 @@ echo json_encode($data, JSON_UNESCAPED_UNICODE);
 	const formattedBarcode = item.print_barcode ? item.print_barcode.toString() : '';
     const cardId = index + 1;
     
-    barcodesHTML += `
-        <div class="barcode-card">
-            <div class="barcode-header">
-                <div class="barcode-number"  >${formatBarcodeDisplay(formattedBarcode)}</div>
-                <div class="barcode-id">#${cardId.toString().padStart(2, '0')}</div>
-            </div>
-            <div class="barcode-image-container">
-                <svg class="barcode-image" id="barcode-${cardId}"></svg>
-            </div>
+barcodesHTML += `
+    <div class="barcode-card">
+        <div class="barcode-header">
+            <div class="barcode-number">${formattedBarcode}</div>  <!-- 直接用，不经过函数 -->
+            <div class="barcode-id">#${cardId}</div>
+        </div>
+        <div class="barcode-image-container">
+            <svg class="barcode-image" id="barcode-${cardId}"></svg>
+        </div>
             <div class="barcode-footer">
                 <div class="barcode-type">
                     <i class="fas fa-chart-bar"></i> Time: ${item.formatted_time || 'Brak daty'}
@@ -639,7 +639,7 @@ echo json_encode($data, JSON_UNESCAPED_UNICODE);
         barcodeData.forEach((item, index) => {
     // 确保获取正确的条码数据
     const barcodeStr = item.print_barcode ? item.print_barcode.toString() : '';
-    const formattedBarcode = barcodeStr.padStart(14, '0');
+    const formattedBarcode = barcodeStr;
     const cardId = index + 1;
     
     // 添加调试信息
