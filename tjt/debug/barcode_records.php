@@ -589,8 +589,8 @@ echo json_encode($data, JSON_UNESCAPED_UNICODE);
         console.error('无效的数据项:', item);
         return;
     }
-    
-    const formattedBarcode = item.print_barcode ? item.print_barcode.toString().padStart(14, '0') : '';
+     
+	const formattedBarcode = item.print_barcode ? item.print_barcode.toString() : '';
     const cardId = index + 1;
     
     barcodesHTML += `
