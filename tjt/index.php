@@ -30,6 +30,8 @@
 
   
  
+ 
+  
  	//  <a href="http://127.0.0.1/tjt/login/index.php" class="btn bottombtn">
 	
 include("IncDB.php");
@@ -38,17 +40,54 @@ include("word_function/sql.php");
 //echo select('START');
 error_reporting(0);
 
+ 
+ 
+ 
+$timestamp = time();
+ 
+ 
+$winter_mode= select('machine_config','winter_mode');
+$winter_mode_interval= select('machine_config','winter_mode_interval');
+$rvm_shutdown= select('machine_config','rvm_shutdown');
+$last_shutdown_time= select('machine_config','last_shutdown_time');
 
+ 
+
+ 
+ if ($winter_mode==1  &&   $timestamp-$last_shutdown_time<0 )
+ {
+	 
+	  header("Location:winter_belt_runing.php");  
+	 exit;
+	 
+ }
+ 
+  
+  
+ if ($rvm_shutdown==1      )
+ {
+	 
+		header("Location:RVM_shutdown.php");  
+		exit;
+	 
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
         $sql = "SELECT COUNT(id) AS restcount FROM printer_barcode";
         $result = mysqli_query($link, $sql);
         $row = mysqli_fetch_array($result);
         $rest_count = $row['restcount'];
         
-        if($rest_count < 2) {
-         
-		 
-	        
+        if($rest_count < 5) {
+          
 	  	  Header("Location:barcode_suspend.php");   
 		  
 	   }
@@ -240,7 +279,7 @@ mysqltorepair("alipay");
   //////////////////////////////////////////判斷是否有瓶子擋住感應結束///////////////
  
   
-  elseif( $errorcode & 0x800  )
+  elseif( $errorcode & 0x800   )
   
   {
 	  
@@ -248,6 +287,15 @@ mysqltorepair("alipay");
 		  	exit;
   }
  
+  elseif(   $errorcode & 0x1000 )
+  
+  {
+	  
+	  Header("Location:printer_empty.php");  
+		  	exit;
+  }
+  
+  
    elseif( $errorcode & 0x200  )
   
   {
@@ -282,8 +330,7 @@ mysqltorepair("alipay");
         }
 		
 		
-		
-		
+ 
 		
 		
 		

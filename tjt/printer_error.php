@@ -4,14 +4,14 @@
   <meta charset="utf-8" /> 
   <title></title> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  	<link rel="stylesheet" href="assets/css/index.css">
   <meta charset="utf-8" http-equiv="refresh" content="60;url=index.php">
 <!DOCTYPE html>
 <html>
 <head>
 <title>背景图片示例</title>
 </head>
-<body style="background-image: url('images/printer.jpg');">
+<body style="background-image: url('images/printer_error.jpg');">
 <!-- 页面内容 -->
 </body>
 </html>
@@ -22,9 +22,13 @@
  
  
   
-  
  
  
+<a href="http://127.0.0.1/tjt/wait_restore_from_printer.php">
+    <button style='position:absolute; left:50%; top:73%; transform:translateX(-50%); color:#0f613b; font-size:28px; background:transparent; border:none;'>
+       Reset drukarki 
+    </button>
+</a>
  
  
  
@@ -102,7 +106,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_SSLVERSION, 1);
 
- curl_exec($ch); 
+// curl_exec($ch); 
  
 
 //email 报警endendendendendendendendendendendendendendendendendendend：

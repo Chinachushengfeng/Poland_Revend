@@ -102,12 +102,16 @@ mysqli_query($link,$sql);
 
  
 
- if (($can+$bottle )>0)
+ if (($bottleQty+$canQty )>0)
  {
 	 
 	  
 	 	   $printer_barcode=select("printer_barcode","barcode");
-				  
+		   
+			if (empty($printer_barcode) || $printer_barcode === '0' || $printer_barcode === 0) {
+    $printer_barcode = 'nobarcode';
+}  
+	  
 				  
 		 	  $sql="update command set  printer_barcode='$printer_barcode'";
 			 mysqli_query($link,$sql);	 
