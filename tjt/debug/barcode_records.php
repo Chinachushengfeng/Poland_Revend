@@ -538,7 +538,7 @@ $sql = "SELECT
 FROM user_transaction ut
 WHERE ut.recognitionstatus = 1
 GROUP BY ut.transactionid
-ORDER BY MAX(ut.id) DESC
+ORDER BY ut.id DESC
 LIMIT 100";
 
 $result = mysqli_query($link, $sql);
