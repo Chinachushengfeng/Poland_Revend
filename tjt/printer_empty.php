@@ -23,10 +23,9 @@
  
   
  
- 
 <a href="http://127.0.0.1/tjt/wait_restore_from_printer.php">
-    <button style='position:absolute; left:50%; top:73%; transform:translateX(-50%); color:#0f613b; font-size:28px; background:transparent; border:none;'>
-        Wymieniono papier 
+    <button style='position:absolute; left:50%; top:73%; transform:translateX(-50%); color:#0f613b; font-size:26px; background:transparent; border:none;'>
+        Potwierdż wymianę papieru
     </button>
 </a>
  
