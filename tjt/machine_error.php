@@ -17,10 +17,10 @@
 				<div class="cricle-three"></div>
 			</div>
 		</div>
-<div style='font-size:35px;margin-top:250px;position:absolute;color:white;margin-left:295px;justify-content:center;align:center;align-items:center'>
-Wykrywanie obcych przedmiotów <p style='margin-left:30px'>
+<div style='font-size:35px;margin-top:250px;position:absolute;color:white;margin-left:280px;justify-content:center;align:center;align-items:center'>
+Wykryto przedmiot w maszynie.<p style='margin-left:-75px'>
 
-Proszę usunąć obcy przedmiot  <p style='margin-left:110px'> i spróbuj odzyskać.
+Naciśnij przycisk na panelu autonaprawa. <p style='margin-left:110px'>  
 			</div>	 
 		<div class="content">
 			<div class="center">
@@ -31,7 +31,7 @@ Proszę usunąć obcy przedmiot  <p style='margin-left:110px'> i spróbuj odzysk
 					<div class="btnContent">
 				  
 				 
-					 <a href="http://127.0.0.1/tjt/wait_restore.php" >  <button  class="btn bottombtn" style='position:absolutel;margin-left:20;color:#0f613b;font-size:15px'   >Próba odzyskania</button>  
+					 <a href="http://127.0.0.1/tjt/wait_restore.php" >  <button  class="btn bottombtn" style='position:absolutel;margin-left:20;color:#0f613b;font-size:15px'   >Autonaprawa</button>  
   
  </a> 
   

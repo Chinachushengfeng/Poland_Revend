@@ -21,11 +21,11 @@
 		
  
 					        .text {
-            bottom:40%;
+            bottom:43%;
            text-align: center;
  position: absolute;
  
-  left: 51%;
+  left: 50%;
   transform: translate(-50%, -50%); 
             transform: translate(-50%, 0%);
             white-space: nowrap;
