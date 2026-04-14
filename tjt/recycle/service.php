@@ -84,16 +84,18 @@ $sql="select count(transactionid) as bottleQty from user_transaction where trans
 $bottleQty=  mysqli_query($link,$sql);
 $bottleQty=mysqli_fetch_array($bottleQty);
 $bottleQty=$bottleQty['bottleQty'];		
- 
- 
+
+$sql="update command set  bottle='$bottleQTY'  ";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
+mysqli_query($link,$sql);  
  
 $sql="select count(transactionid) as canQty from user_transaction where transactionid='$transactionid' and  metal='1' and recognitionstatus=1 and print_barcode='0'";
 $canQty=  mysqli_query($link,$sql);
 $canQty=mysqli_fetch_array($canQty);
 $canQty=$canQty['canQty'];		
     
- 
- 
+$sql="update command set  can='$canQTY'  ";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
+mysqli_query($link,$sql);
+
  
   
 $sql="update user_transaction set  transactiondone=4  where transactionid='$transactionid'";//標記結束transaction 4=crusher问题   //每次在載入首頁時候會檢查是否有0標記並上傳。
