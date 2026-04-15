@@ -17,7 +17,7 @@
 				<div class="cricle-three"></div>
 			</div>
 		</div>
-<div style='font-size:35px;margin-top:250px;position:absolute;color:white;margin-left:280px;justify-content:center;align:center;align-items:center'>
+<div style='font-size:35px;margin-top:250px;position:absolute;color:white;margin-left:325px;justify-content:center;align:center;align-items:center'>
 Wykryto przedmiot w maszynie.<p style='margin-left:-75px'>
 
 Naciśnij przycisk na panelu autonaprawa. <p style='margin-left:110px'>  
