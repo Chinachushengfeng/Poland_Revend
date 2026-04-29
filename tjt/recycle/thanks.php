@@ -114,7 +114,7 @@ mysqli_query($link,$sql);
 $sql="update user_transaction set  transactiondone=2  where transactionid='$transactionid'";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
 mysqli_query($link,$sql);
 
-
+ 
 
 
 
