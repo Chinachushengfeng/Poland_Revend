@@ -20,12 +20,12 @@
  
 		
  
-					        .text {
-            bottom:40%;
+					           .text {
+            bottom:48%;
            text-align: center;
  position: absolute;
  
-  left: 51%;
+  left: 50.5%;
   transform: translate(-50%, -50%); 
             transform: translate(-50%, 0%);
             white-space: nowrap;
