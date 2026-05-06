@@ -289,6 +289,103 @@ $sql = "update command set userscan=0";
 <div class="wrap">
     <div class="btn-box left" id="leftBtn" style='text-align:center'>LEWY KOSZ <br>(Butelki PET)</div>
   
+  
+<?php 
+
+include("../recycle/function/sql.php"); 
+error_reporting(0);
+  $filename = 'storagebox.txt';
+$lines = [];
+ if (file_exists($filename)) {
+    $handle = fopen($filename, 'r');
+    if ($handle) {
+        // 读取第1行
+        $lines[1] = trim(fgets($handle));
+        // 读取第2行
+        $lines[2] = trim(fgets($handle));
+        // 读取第3行（最后判断是否为空）
+        $line3 = fgets($handle);
+        $lines[3] = $line3 !== false ? trim($line3) : null;
+        
+        fclose($handle);
+    }
+}
+
+// 使用示例
+ 
+ $bin_type=$lines[1];
+ 
+ $set_pjuli = $lines[2];
+ 
+if (isset($lines[3])) {
+    $set_cjuli = $lines[3];
+} 
+
+
+
+if($bin_type==2)
+{
+		$p_empty_time= select('empty_record where bin_type="left"  order by id desc ','dateline');
+
+		$c_empty_time= select('empty_record where bin_type="right"  order by id desc ','dateline');
+
+ 
+		 
+		 
+		 $sql="select count(id) as p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		$result = mysqli_query($link, $sql);
+		$result = mysqli_fetch_array($result);
+		$p_QTY=$result['p_QTY'];  //当前的塑料瓶一侧的数量
+		 
+		 
+		 
+ 	echo  '<div style="position: absolute; font-size:20px;color:white;top: 65%; left:30%; transform: translate(-50%, -50%);">' . 'Aktualna ilość：'.htmlspecialchars($p_QTY) . '</div>';
+		 
+		 
+		 
+		 
+		  $sql="select count(id) as c_QTY from user_transaction where dateline >'$c_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		$result = mysqli_query($link, $sql);
+		$result = mysqli_fetch_array($result);
+		$c_QTY=$result['c_QTY']; //当前易拉罐一侧的数量
+		 
+		 
+		 
+ echo  '<div style="position: absolute; font-size:20px;color:white;top: 65%; left:80%; transform: translate(-50%, -50%);">' . 'Aktualna ilość：'.htmlspecialchars($c_QTY) . '</div>';
+		 
+		 
+
+	 
+
+}
+
+else 
+{
+	
+	
+			$p_empty_time= select('empty_record where bin_type="left"  order by id desc ','dateline');
+
+	  
+ 
+		 $sql="select count(id) as  p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		$result = mysqli_query($link, $sql);
+		
+	 
+		$result = mysqli_fetch_array($result);
+		$p_QTY=$result['p_QTY'];  //当前的塑料瓶一侧的数量
+		 
+ 
+ 		 
+ 	echo  '<div style="position: absolute; font-size:20px;color:white;top: 65%; left:30%; transform: translate(-50%, -50%);">' . 'Aktualna ilość：'.htmlspecialchars($p_QTY) . '</div>';
+		 
+		
+
+	
+}
+
+ 
+ 
+?>
 
 
   <div class="btn-box right" id="rightBtn" style='text-align:center'>PRAWY KOSZ <br>(Puszki)</div>

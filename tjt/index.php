@@ -28,19 +28,21 @@
   <?php
  
 
-  
- 
+   
  
   
  	//  <a href="http://127.0.0.1/tjt/login/index.php" class="btn bottombtn">
 	
 include("IncDB.php");
+   
+$sql = "ALTER TABLE  command  ENGINE = InnoDB";
+mysqli_query($link, $sql);
+ 
 
-include("word_function/sql.php");
+include("recycle/function/sql.php"); 
 //echo select('START');
 error_reporting(0);
 
- 
  
  
 $timestamp = time();
@@ -52,7 +54,7 @@ $rvm_shutdown= select('machine_config','rvm_shutdown');
 $last_shutdown_time= select('machine_config','last_shutdown_time');
 
  
-
+ 
  
  if ($winter_mode==1  &&   $timestamp-$last_shutdown_time<0 )
  {
@@ -62,6 +64,8 @@ $last_shutdown_time= select('machine_config','last_shutdown_time');
 	 
  }
  
+  
+  
   
   
  if ($rvm_shutdown==1      )
@@ -306,30 +310,100 @@ mysqltorepair("alipay");
   
   
   
-  
+  $filename = 'debug/storagebox.txt';
+$lines = [];
+ if (file_exists($filename)) {
+    $handle = fopen($filename, 'r');
+    if ($handle) {
+        // 读取第1行
+        $lines[1] = trim(fgets($handle));
+        // 读取第2行
+        $lines[2] = trim(fgets($handle));
+        // 读取第3行（最后判断是否为空）
+        $line3 = fgets($handle);
+        $lines[3] = $line3 !== false ? trim($line3) : null;
+        
+        fclose($handle);
+    }
+}
+
+// 使用示例
  
-		
-		    if ($pjuli <= 15  and $pjuli>0    and  $pjuli ) {
-         
-			 
-			
-   Header("Location:error.php");
-   
-   exit;
-        }
-		
+ $bin_type=$lines[1];
+ 
+ $set_pjuli = $lines[2];
+ 
+if (isset($lines[3])) {
+    $set_cjuli = $lines[3];
+} 
+
+
+
+if($bin_type==2)
+{
+		$p_empty_time= select('empty_record where bin_type="left"  order by id desc ','dateline');
+
+		$c_empty_time= select('empty_record where bin_type="right"  order by id desc ','dateline');
+
+
+		 
+		 
+		 $sql="select count(id) as p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		$result = mysqli_query($link, $sql);
+		$result = mysqli_fetch_array($result);
+		$p_QTY=$result['p_QTY'];  //当前的塑料瓶一侧的数量
+		 
+		  $sql="select count(id) as c_QTY from user_transaction where dateline >'$c_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		$result = mysqli_query($link, $sql);
+		$result = mysqli_fetch_array($result);
+		$c_QTY=$result['c_QTY']; //当前易拉罐一侧的数量
+		 
+		 
+		 
 		 
 
-        if ($cjuli <= 15  and  $cjuli  and $cjuli >0 ) {
-         
-			 
-			
-   Header("Location:error.php");
-   
-   exit;
-        }
+		if ($p_QTY > $set_pjuli ) {		 
+
+		Header("Location:error.php");
+
+		exit;
+		}
 		
 		
+		if ($c_QTY > $set_cjuli ) {		 
+
+		Header("Location:error.php");
+
+		exit;
+		}
+		
+
+}
+
+else 
+{
+	
+			$p_empty_time= select('empty_record where bin_type="left"  order by id desc ','dateline');
+
+	  
+		 $sql="select count(id) as $p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		$result = mysqli_query($link, $sql);
+		$result = mysqli_fetch_array($result);
+		$p_QTY=$result['p_QTY'];  //当前的塑料瓶一侧的数量
+		 
+	  
+		if ($p_QTY > $set_pjuli ) {		 
+
+		Header("Location:error.php");
+
+		exit;
+		}
+
+	
+}
+
+ 
+		 
  
 		
 		
