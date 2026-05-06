@@ -21,7 +21,7 @@
 		
  
 					        .text {
-            bottom:43%;
+                     bottom:48%;
            text-align: center;
  position: absolute;
  
