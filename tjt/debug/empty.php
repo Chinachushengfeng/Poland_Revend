@@ -351,7 +351,7 @@ if($bin_type==2)
 		 
 		 
 		 
- echo  '<div style="position: absolute; font-size:20px;color:white;top: 65%; left:80%; transform: translate(-50%, -50%);">' . 'Aktualna ilość：'.htmlspecialchars($c_QTY) . '</div>';
+ echo  '<div style="position: absolute;z-index:100 ;font-size:20px;color:white;top: 65%; left:80%; transform: translate(-50%, -50%);">' . 'Aktualna ilość：'.htmlspecialchars($c_QTY) . '</div>';
 		 
 		 
 
