@@ -367,7 +367,7 @@ else
 
 	  
  
-		 $sql="select count(id) as  p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		 $sql="select count(id) as  p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1     ";
 		$result = mysqli_query($link, $sql);
 		
 	 

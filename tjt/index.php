@@ -386,7 +386,7 @@ else
 			$p_empty_time= select('empty_record where bin_type="left"  order by id desc ','dateline');
 
 	  
-		 $sql="select count(id) as $p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		 $sql="select count(id) as $p_QTY from user_transaction where dateline >'$p_empty_time'  and recognitionstatus=1   ";
 		$result = mysqli_query($link, $sql);
 		$result = mysqli_fetch_array($result);
 		$p_QTY=$result['p_QTY'];  //当前的塑料瓶一侧的数量
