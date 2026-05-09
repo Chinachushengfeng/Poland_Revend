@@ -344,7 +344,7 @@ if($bin_type==2)
 		 
 		 
 		 
-		  $sql="select count(id) as c_QTY from user_transaction where dateline >'$c_empty_time'  and recognitionstatus=1 and metal <> 1    ";
+		  $sql="select count(id) as c_QTY from user_transaction where dateline >'$c_empty_time'  and recognitionstatus=1 and metal = 1    ";
 		$result = mysqli_query($link, $sql);
 		$result = mysqli_fetch_array($result);
 		$c_QTY=$result['c_QTY']; //当前易拉罐一侧的数量
