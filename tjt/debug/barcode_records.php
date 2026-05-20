@@ -523,12 +523,11 @@ Aktualnie wyświetlanych jest 100 ostatnio wydrukowanych kodów kreskowych.
         // W rzeczywistości dane te będą generowane dynamicznie przez PHP
 // 直接将PHP数组转换为JavaScript对象
 const barcodeData = <?php
-include('incdb.php');
-date_default_timezone_set("PRC");
+include('incdb.php'); 
 
 $sql = "SELECT 
     ut.print_barcode,
-    ut.dateline,
+    ut.octreceipt,
     ut.transactionid,
     ut.recognitionstatus,
     ut.id,
@@ -536,19 +535,20 @@ $sql = "SELECT
     SUM(CASE WHEN ut.metal = 0 THEN 1 ELSE 0 END) as bottle_count,
     SUM(CASE WHEN ut.metal = 1 THEN 1 ELSE 0 END) as can_count
 FROM user_transaction ut
-WHERE ut.recognitionstatus = 1
+WHERE ut.recognitionstatus = 1 and 
+ut.octreceipt <> 0
 GROUP BY ut.transactionid
-ORDER BY MAX(id) DESC
+ORDER BY MAX(octreceipt) DESC
 LIMIT 100";
 
 $result = mysqli_query($link, $sql);
 $data = [];
-
+date_default_timezone_set('Europe/Warsaw');
 while($it = mysqli_fetch_assoc($result)) {
     // 添加格式化后的时间
-    $it['formatted_time'] = date('Y-m-d H:i:s', $it['dateline'] - 25200);
+    $it['formatted_time'] =  $it['octreceipt']  ;
     // 添加波兰格式时间
-    $it['polish_time'] = date('d.m.Y H:i:s', $it['dateline'] - 25200);
+    $it['polish_time'] = $it['octreceipt']  ;
     $data[] = $it;
 }
 

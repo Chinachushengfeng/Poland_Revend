@@ -39,6 +39,45 @@ $sql = "ALTER TABLE  command  ENGINE = InnoDB";
 mysqli_query($link, $sql);
  
 
+$tableName = 'command';
+$columnName = 'print_time';
+$afterColumn = 'id'; // 在 id 字段之后添加，可以设置为 null 或空字符串
+
+
+$checkSql = "SELECT COUNT(*) FROM information_schema.COLUMNS 
+             WHERE TABLE_SCHEMA = DATABASE() 
+             AND TABLE_NAME = '$tableName' 
+             AND COLUMN_NAME = '$columnName'";
+
+$result = mysqli_query($link, $checkSql);
+
+if ($result) {
+    $row = mysqli_fetch_array($result);
+    
+    if ($row[0] == 0) {
+        // 字段不存在，执行添加
+        $alterSql = "ALTER TABLE `$tableName` ADD COLUMN `$columnName` VARCHAR(32)";
+        
+        if (mysqli_query($link, $alterSql)) {
+          //  echo "字段 print_time 添加成功\n";
+        } else {
+         //   echo "添加失败: " . mysqli_error($link) . "\n";
+        }
+    } else {
+        // 字段已存在，忽略
+     //   echo "字段 print_time 已存在，无需添加\n";
+    }
+} else {
+ //   echo "检查字段失败: " . mysqli_error($link) . "\n";
+}
+
+ 
+
+
+ 
+ 
+ 
+
 include("recycle/function/sql.php"); 
 //echo select('START');
 error_reporting(0);

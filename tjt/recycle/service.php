@@ -67,7 +67,7 @@
 include("incdb.php");	 
 include("function/sql.php");
 
- 
+ date_default_timezone_set('Europe/Warsaw');
 
 
 $transactionid= select('command','transactionid');
@@ -115,11 +115,14 @@ mysqli_query($link,$sql);
 }  
 	  
 				  
-		 	  $sql="update command set  printer_barcode='$printer_barcode'";
+				    $nowthetime=time();
+            $nowthetime=date('Y-m-d H:i:s', $nowthetime);
+                    
+		 	  $sql="update command set   print_time='$nowthetime', printer_barcode='$printer_barcode'";
 			 mysqli_query($link,$sql);	 
 			 
-			 	  	  
-		 	  $sql="update user_transaction  set  print_barcode='$printer_barcode' where transactionid='$transactionid'";
+			 	  	 
+		 	  $sql="update user_transaction  set  print_barcode='$printer_barcode',octreceipt='$nowthetime'  where transactionid='$transactionid'";
 			 mysqli_query($link,$sql);	 
 			 
 			 

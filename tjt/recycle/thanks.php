@@ -47,7 +47,7 @@
                         <img src="../assets/image/slimbottle.png" alt="">
 
 <?php
-
+date_default_timezone_set('Europe/Warsaw');
 include("incdb.php");	 
 include("function/sql.php");
 
@@ -109,9 +109,8 @@ $sql="SELECT count(id) as canQTY from user_transaction where recognitionstatus=1
 $sql="update command set  can='$canQTY'  ";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
 mysqli_query($link,$sql);
  
- 
   
-$sql="update user_transaction set  transactiondone=2  where transactionid='$transactionid'";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
+$sql="update user_transaction set  transactiondone=2   where transactionid='$transactionid'";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
 mysqli_query($link,$sql);
 
  
@@ -131,17 +130,20 @@ if (empty($printer_barcode) || $printer_barcode === '0' || $printer_barcode === 
 }  
 
 
-				  
-		 	  $sql="update command set  printer_barcode='$printer_barcode'";
+				    $nowthetime=time();
+                    $nowthetime=date('Y-m-d H:i:s', $nowthetime);
+
+		 	  $sql="update command set   print_time='$nowthetime', printer_barcode='$printer_barcode'";
 			 mysqli_query($link,$sql);	 
 			 
-			 	  	  
-		 	  $sql="update user_transaction  set  print_barcode='$printer_barcode' where transactionid='$transactionid'";
+             
+		 	  $sql="update user_transaction  set  print_barcode='$printer_barcode',octreceipt='$nowthetime'  where transactionid='$transactionid'";
 			 mysqli_query($link,$sql);	 
 			 
 			 
 			 	  $sql="delete from printer_barcode  where  barcode='$printer_barcode'";
 			 mysqli_query($link,$sql);	 
+             
 			 
  }
  
