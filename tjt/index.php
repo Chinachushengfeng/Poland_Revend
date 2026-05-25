@@ -35,8 +35,13 @@
 	
 include("IncDB.php");
    
-$sql = "ALTER TABLE  command  ENGINE = InnoDB";
-mysqli_query($link, $sql);
+   
+$check = mysqli_query($link, "SHOW TABLE STATUS LIKE 'command'");
+$row = mysqli_fetch_assoc($check);
+if ($row && $row['Engine'] != 'InnoDB') {
+    mysqli_query($link, "ALTER TABLE command ENGINE = InnoDB");
+}
+ 
  
 
 $tableName = 'command';

@@ -11,7 +11,7 @@
  	<style type="text/css">
  
 		  body {
-    background-image: url('images/cheating.jpg');
+    background-image: url('images/takebottleout_33.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -20,12 +20,12 @@
  
 		 
  
-					        .text {
-            bottom:40%;
+   .text {
+            bottom:44%;
            text-align: center;
  position: absolute;
  
-  left: 51%;
+  left: 50%;
   transform: translate(-50%, -50%); 
             transform: translate(-50%, 0%);
             white-space: nowrap;
@@ -34,7 +34,6 @@
 			font-weight :bold;
         color:#fff
 		}
-		
 	 
   
  
@@ -52,47 +51,7 @@
 
   
   
-
- 
- <?php
- 
- include("incdb.php");
-
-$sql = "select *from  command";
-$result = mysqli_query($link, $sql);
-$result = mysqli_fetch_array($result);
-		$transactionid = $result['transactionid'];
-		 
-		$metal = $result['metal'];
-		 
-		$bottleqty = $result['bottle'];
-		 $canqty = $result['can'];
-		 
-$totalqty=   $bottleqty+ $canqty;
-
-
-		 
-if($metal==0  && $totalqty > 0)
-{
-
-		$sql = "update command set bottle=bottle-1"; 
-		mysqli_query($link, $sql);
-
-}
-elseif ($metal==1  && $totalqty > 0)
-{
-	
-		$sql = "update command set can=can-1"; 
-		mysqli_query($link, $sql);
-	
-}
- 
- 
- 
- 
- 
- ?>
- 
+  
  
   
  <script type="text/javascript" src="js/timecountdown.js"></script>
@@ -107,18 +66,18 @@ elseif ($metal==1  && $totalqty > 0)
 
  
  
-setTimeout("javascript:location.href='dorecycle.php'", 15000); 
+setTimeout("javascript:location.href='dorecycle.php'", 3000); 
 
  
 
 </script> 
 
 
-<div class='text' id='myButton'  > 15  </div>
+<div class='text' id='myButton'  > 3  </div>
 
    
     <script>
-        let countdown = 14;
+        let countdown = 2;
         const button = document.getElementById('myButton');
         const interval = setInterval(() => {
             if (countdown > 0) {

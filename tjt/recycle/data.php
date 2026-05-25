@@ -415,6 +415,96 @@ mysqli_query($link,$sql);
 
 
 
+elseif ($command==22   )    //连续多个。
+	
+	{
+		   
+		  	 
+ set_time_limit(1000000);//无限请求超时时间    
+$i=0;    
+while (true){    
+    //sleep(1);    
+    usleep(1000000);//0.5秿   
+    $i++;    
+        
+      
+        $arr=array('success'=>"22",'num'=>'0','value'=>$barcode);    
+        echo json_encode($arr);    
+      
+
+ 
+ 	    
+       $sql="insert into user_transaction  (user,transactionid,dateline,statecode,barcode,weight,bors,diam,recognitionstatus,charityid,rebateordonate,bottlevalue,payplatform,charityname,octreceipt)
+  
+  values ('$user','$transactionid','$dateline','$statecode','$barcode','$weight','$bors','$diam','22','$charityid','$rebateordonate','$bottlevalue','$payplatform','$charityname','$octreceipt')";
+  
+  
+  //echo  $transactionid,$dateline,$statecode,$user,$barcode,$brand,$bottleinfo,$weight,$recognitionstatus,$rebateordonate,$bottlevalue;
+ 
+
+ mysqli_query($link,$sql);	 
+      $sql="update command set recognitionstatus=0 ,diam=0,weight=0";
+ mysqli_query($link,$sql);	 
+ 
+ 
+ 
+       exit();  
+
+
+
+} 
+	  
+	 
+	 
+	  
+} 
+
+
+elseif ($command==33   )    // 瓶子直接拉出来，没回收成功
+	
+	{
+		   
+		  	 
+ set_time_limit(1000000);//无限请求超时时间    
+$i=0;    
+while (true){    
+    //sleep(1);    
+    usleep(1000000);//0.5秿   
+    $i++;    
+        
+      
+        $arr=array('success'=>"33",'num'=>'0','value'=>$barcode);    
+        echo json_encode($arr);    
+      
+
+ 
+ 	    
+       $sql="insert into user_transaction  (user,transactionid,dateline,statecode,barcode,weight,bors,diam,recognitionstatus,charityid,rebateordonate,bottlevalue,payplatform,charityname,octreceipt)
+  
+  values ('$user','$transactionid','$dateline','$statecode','$barcode','$weight','$bors','$diam','33','$charityid','$rebateordonate','$bottlevalue','$payplatform','$charityname','$octreceipt')";
+  
+  
+  //echo  $transactionid,$dateline,$statecode,$user,$barcode,$brand,$bottleinfo,$weight,$recognitionstatus,$rebateordonate,$bottlevalue;
+ 
+
+ mysqli_query($link,$sql);	 
+      $sql="update command set recognitionstatus=0 ,diam=0,weight=0";
+ mysqli_query($link,$sql);	 
+ 
+ 
+ 
+       exit();  
+
+
+
+} 
+	  
+	 
+	 
+	  
+} 
+
+
 	//1开门成功 2到位成功  3:没扫描到 4条码不符 5超重 6过轻 7回收成功 8回收失败 9退瓶成功 10关门成功 11机内有瓶子 12图像识别失败
  
 

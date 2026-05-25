@@ -521,6 +521,20 @@ setTimeout("javascript:location.href='cheatingend.php'", 1000);
 
  						}
 
+						else if (data.success == "22") {
+
+ 
+setTimeout("javascript:location.href='doublebottle_22.php'", 1000); 
+
+ 						}
+
+						else if (data.success == "33") {
+
+ 
+setTimeout("javascript:location.href='takebottleout_33.php'", 1000); 
+
+ 						}
+
 				
 
  						 else if (data.success == "2") {
