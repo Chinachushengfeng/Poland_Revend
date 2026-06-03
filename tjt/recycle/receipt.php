@@ -31,7 +31,14 @@ body,td,th {
  				background-image: linear-gradient(#08eed5, #007573);
  			font-family: "Arial Black", Gadget, sans-serif;
 }
-
+ 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+ 
 #apDiv2 {
 	position: absolute;
 	left: 34px;

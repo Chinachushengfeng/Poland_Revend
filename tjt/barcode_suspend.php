@@ -17,6 +17,13 @@
     background-attachment: fixed; /* 可选：固定背景不滚动 */
   }
  
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+ 
 		
  
 					        .text {

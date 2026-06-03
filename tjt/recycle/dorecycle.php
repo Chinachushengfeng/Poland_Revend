@@ -15,6 +15,15 @@
 
  	<script src="js/myjs.js"></script>
     <title>Document</title>
+	<style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+</style>
+
 </head>
  <body leftmargin=0 topmargin=0 oncontextmenu='return false' ondragstart='return false' onselectstart='return false' onselect='document.selection.empty()' oncopy='document.selection.empty()' onbeforecopy='return false'>
 

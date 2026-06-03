@@ -10,6 +10,15 @@
 <html>
 <head>
 <title>背景图片示例</title>
+
+<style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+</style>
 </head>
 <body style="background-image: url('images/printer_empty.jpg');">
 <!-- 页面内容 -->

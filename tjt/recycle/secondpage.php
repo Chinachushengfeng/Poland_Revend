@@ -13,7 +13,14 @@
     text-decoration: none;
   }
  
-   
+ 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+ 
 </style>
 </head>
 

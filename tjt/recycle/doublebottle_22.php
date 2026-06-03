@@ -19,6 +19,13 @@
   }
  
 		 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+ 
  
    .text {
             bottom:44%;

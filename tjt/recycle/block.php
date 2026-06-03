@@ -20,6 +20,13 @@
  
 		
  
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+ 
 					           .text {
             bottom:48%;
            text-align: center;

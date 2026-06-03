@@ -12,7 +12,13 @@
     text-decoration: none;
   }
  
-   
+ 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    } 
 </style>
 	<script src="js/jquery.min.js"></script>
 

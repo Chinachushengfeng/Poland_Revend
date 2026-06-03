@@ -39,7 +39,14 @@ body {
 	background-image: linear-gradient(#07874c, #07874c);
  			font-family: "Arial Black", Gadget, sans-serif;
 }
-
+ 
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+ 
 	 .text {
             bottom: 5%;
             left: 50%;

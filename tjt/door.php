@@ -17,6 +17,13 @@
  
 		 
  
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    html {
+        scrollbar-width: none;
+    }
+ 
 					        .text {
             bottom:40%;
            text-align: center;
