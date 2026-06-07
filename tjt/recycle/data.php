@@ -349,7 +349,7 @@ elseif ($command==44   )    //欺诈
 	{
 		   
 		  	 
- set_time_limit(1000000);//无限请求超时时间    
+ set_time_limit(100000);//无限请求超时时间    
 $i=0;    
 while (true){    
     //sleep(1);    
@@ -420,7 +420,7 @@ elseif ($command==22   )    //连续多个。
 	{
 		   
 		  	 
- set_time_limit(1000000);//无限请求超时时间    
+ set_time_limit(100000);//无限请求超时时间    
 $i=0;    
 while (true){    
     //sleep(1);    
@@ -465,7 +465,7 @@ elseif ($command==33   )    // 瓶子直接拉出来，没回收成功
 	{
 		   
 		  	 
- set_time_limit(1000000);//无限请求超时时间    
+ set_time_limit(100000);//无限请求超时时间    
 $i=0;    
 while (true){    
     //sleep(1);    
@@ -946,7 +946,7 @@ $i=0;
     $i++;    
         
       
-        $arr=array('success'=>"20" );    
+        $arr=array('success'=>"1120" );    
         echo json_encode($arr);    
       
 		  

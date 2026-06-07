@@ -69,18 +69,18 @@
 
  
  
-setTimeout("javascript:location.href='dorecycle.php'", 3000); 
+setTimeout("javascript:location.href='dorecycle.php'", 2000); 
 
  
 
 </script> 
 
 
-<div class='text' id='myButton'  > 3  </div>
+<div class='text' id='myButton'  > 2  </div>
 
    
     <script>
-        let countdown = 2;
+        let countdown = 1;
         const button = document.getElementById('myButton');
         const interval = setInterval(() => {
             if (countdown > 0) {

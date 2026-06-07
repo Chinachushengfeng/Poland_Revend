@@ -8,10 +8,11 @@ $print_barcode = $_GET['print_barcode'];
 $can = $_GET['can'];
 $bottle = $_GET['bottle'];
 
+$print_time=$_GET['time'];
 include('incdb.php');
 
 // 修正 SQL 语法：mysqli_query(连接, SQL语句)
-$sql = "UPDATE command SET command=8, printer_barcode='$print_barcode', bottle='$bottle', can='$can'";
+$sql = "UPDATE command SET command=8, printer_barcode='$print_barcode', bottle='$bottle',print_time='$print_time', can='$can'";
 
 // 执行查询
 $result = mysqli_query($link, $sql);
