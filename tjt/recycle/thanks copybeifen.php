@@ -139,13 +139,27 @@ if (empty($printer_barcode) || $printer_barcode === '0' || $printer_barcode === 
 				    $nowthetime=time();
                     $nowthetime=date('Y-m-d H:i:s', $nowthetime);
 
-		 	  $sql="update command set   print_time='$nowthetime', printer_barcode='$printer_barcode'";
-			 mysqli_query($link,$sql);	 
+ 
 			 
              
 		 	  $sql="update user_transaction  set  print_barcode='$printer_barcode',octreceipt='$nowthetime'  where transactionid='$transactionid'";
 			 mysqli_query($link,$sql);	 
 			 
+
+
+$sql="select * from user_transaction where transactionid='$transactionid' ";//標記結束transaction    //每次在載入首頁時候會檢查是否有0標記並上傳。
+$result=mysqli_query($link,$sql);
+ $result=mysqli_fetch_array($result);
+ $print_barcode=$result['print_barcode'];
+ 
+
+
+		 	  $sql="update command set   print_time='$nowthetime', printer_barcode='$printer_barcode'";
+			 mysqli_query($link,$sql);	 
+
+ 
+
+
 			 
 			 	  $sql="delete from printer_barcode  where  barcode='$printer_barcode'";
 			 mysqli_query($link,$sql);	 
@@ -400,8 +414,9 @@ else  //如果沒有需要上傳的數據
 
 
 
+
  
-	
+ 
  
  
  
@@ -430,11 +445,7 @@ function decrypt($encrypt)
     }
 }
 
-	?> 
- 
- 
- 
- 
+	?>
 		<script>
     // 全局变量
     let countdown;  
@@ -453,7 +464,7 @@ function decrypt($encrypt)
 
             if (timeLeft < 0) {
                 clearInterval(countdown);
-                window.location.href = 'qshend.php'; // 页面跳转
+                window.location.href = 'http://127.0.0.1/tjt'; // 页面跳转
             }
         }, 1000); 
     }
@@ -466,7 +477,7 @@ function decrypt($encrypt)
  
 // 以下方式定时跳转
  
-setTimeout("javascript:location.href='qshend.php'",  120000); 
+setTimeout("javascript:location.href='../index.php'",  120000); 
  
 
 
@@ -538,7 +549,7 @@ function enableJump() {
 								 
 										if(res.success=='close')
 										{ 
-											 window.location.href = 'qshend.php'; // 页面跳转
+											 window.location.href = 'http://127.0.0.1/tjt'; // 页面跳转
 										}
 										else{
 
@@ -595,7 +606,7 @@ function enableJump() {
  
  
  
-setTimeout("javascript:location.href='qshend.php'", 1000); 
+setTimeout("javascript:location.href='../index.php'", 1000); 
 
 
 
@@ -607,11 +618,11 @@ setTimeout("javascript:location.href='qshend.php'", 1000);
 						
 						
 				
-	else if (data.success == "0") {
+	else if (data.success == "10") {
  
   
  
-    //  window.location.href = "http://127.0.0.1/tjt/machine_error.php";
+ 
     
  
  
