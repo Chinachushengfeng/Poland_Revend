@@ -511,7 +511,7 @@ $(function () {
 	 else if (data.success == "99") {
 
  
- setTimeout("javascript:location.href='thanks.php'", 500); 
+ setTimeout("javascript:location.href='qsh.php'", 500); 
 
 
  						} 
