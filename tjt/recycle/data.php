@@ -238,12 +238,10 @@ while (true){
 
 
     
- $sql="update command set limitedvalue= limitevalue-1 ";
+ $sql="update command set limitedvalue=limitedvalue-1 ";
  
- $result=mysqli_query($Link,$sql);
-  		  
-		  
-		  
+ mysqli_query($link,$sql);	 
+			 		  
 		  
 		  
 		  
