@@ -96,7 +96,7 @@ document.addEventListener('dragstart', e => e.preventDefault());   // 禁止拖�
 
 		 
 
-		$sql = "update command set bottle=0,can=0,statecode=1"; 
+		$sql = "update command set bottle=0,can=0,statecode=1,limitedvalue=30"; 
 		mysqli_query($link, $sql);
 		
 		

@@ -235,7 +235,13 @@ while (true){
     if ($command==7 )   //&& $cishu<10  //success
 	
 	{
-		  
+
+
+    
+ $sql="update command set limitedvalue= limitevalue-1 ";
+ 
+ $result=mysqli_query($Link,$sql);
+  		  
 		  
 		  
 		  

@@ -81,7 +81,7 @@ date_default_timezone_set("PRC");
  	$mid = select("command", "mid");
   	$bottle = select("command", "bottle");
   	$can = select("command", "can");
- 
+    $limit=select("command","limitedvalue");
 if (!$bottle and !$can)
 {
 	$bottle=0;
@@ -145,7 +145,7 @@ if (!$bottle and !$can)
                         <div class="line"></div>
                         <!-- 瓶子/易拉罐限制 -->
                         <div class="re re-limit">
-                            <p> Limit butelek/puszek: </p> <span id="msg3" >30</span>
+                            <p> Limit butelek/puszek: </p> <span id="msg3" > <?php echo $limit; ?></span>
                         </div>
                         <div class="line"></div>
                         <!-- 金额 -->
