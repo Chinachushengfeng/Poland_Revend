@@ -265,36 +265,12 @@ while (true){
 			    
   mysqli_query($link,$sql);	 
 			 
-			 
-
-
-if (!$result) {
-    // 错误信息
-    $error_no = mysqli_errno($link);
-    $error_msg = mysqli_error($link);
-    
-    // 1. 记录到PHP错误日志
-    error_log("[INSERT fail] 错误码:$error_no - $error_msg | SQL: $sql");
-    
-    // 2. 记录到单独的文件
-    $log_file = '/tmp/sql_errors.log';
-    $log_content = date('Y-m-d H:i:s') . " | 错误码: $error_no | 错误: $error_msg | SQL: $sql | 变量: user=$user, txn=$transactionid, barcode=$barcode\n";
-    file_put_contents($log_file, $log_content, FILE_APPEND);
-    
-    // 3. 如果是barcode为NULL的错误，特别记录
-    if ($error_no == 1048 && strpos($error_msg, 'barcode') !== false) {
-        error_log("【重要】barcode为NULL！user=$user, transactionid=$transactionid");
-    }
-}
-
-
-
-
+ 
 			 
 				  
-		 	  $sql="update command set recognitionstatus=0 ,diam=0,weight=0 ";
-			 mysqli_query($link,$sql);	 
-			 
+$sql="update command set recognitionstatus=0 ,diam=0,weight=0 ";
+mysqli_query($link,$sql);	 
+
 			  
 			 
 			 
