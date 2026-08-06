@@ -145,12 +145,53 @@ if (!$bottle and !$can)
                         <div class="line"></div>
                         <!-- 瓶子/易拉罐限制 -->
                         <div class="re re-limit">
-                            <p> Limit butelek/puszek: </p> <span id="msg3" > <?php echo $limit; ?></span>
+                              <p> Limit butelek/puszek: </p> <span id="msg3" > <?php 
+							
+							
+					if 	($limit == 30)
+					{
+						echo $limit;
+					}	
+else {					
+$limit=30;
+
+echo $limit - $bottle+$can; 
+
+}
+
+
+?></span>
                         </div>
                         <div class="line"></div>
                         <!-- 金额 -->
                         <div class="re discount">
-                            <p>Wartość rabatu: </p> <span  id="msg1">0.00</span><span>zł</span>
+                            <p>Wartość rabatu: </p> <span  id="msg1">
+							
+									<?php
+
+$transactionid= select('command','transactionid');
+
+$sql="select sum(bottlevalue) as totalvalue from user_transaction where transactionid='$transactionid'and recognitionstatus=1";
+$totalvalue=  mysqli_query($link,$sql);
+$totalvalue=mysqli_fetch_array($totalvalue);
+$totalvalue=$totalvalue['totalvalue'];		
+ 
+ 
+ 
+ 
+ if ($totalvalue)
+ {
+ echo number_format ($totalvalue*0.1,2);
+ }
+ else
+ {
+	 echo '0.00';
+ }
+
+
+ ?>
+							
+							 </span><span>zł</span>
                         </div>
                     </div>
                 </div>
