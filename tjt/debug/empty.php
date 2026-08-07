@@ -572,13 +572,14 @@ function checkRightButtonStatus() {
         dataType: "text",
         cache: false,
         success: function(data) {
-            const content = data.trim();
-            if (content === "1") {
+            // 只取第一行判断按钮状态，兼容 storagebox.txt 为多行的情况
+            const firstLine = data.trim().split(/\r?\n/)[0].trim();
+            if (firstLine === "1") {
                 rightBtn.classList.add('disabled');
-                console.log("右边按钮已禁用 (storagebox.txt = 1)");
-            } else if (content === "2") {
+                console.log("右边按钮已禁用 (storagebox.txt 第一行 = 1)");
+            } else if (firstLine === "2") {
                 rightBtn.classList.remove('disabled');
-                console.log("右边按钮已启用 (storagebox.txt = 2)");
+                console.log("右边按钮已启用 (storagebox.txt 第一行 = 2)");
             } else {
                 rightBtn.classList.remove('disabled');
                 console.log("右边按钮已启用 (默认)");
