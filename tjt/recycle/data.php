@@ -131,7 +131,7 @@ $metal=select("barcode where barcode='$barcode'","metal");
   
     if(!$barcode )
   {
-	  $barcode='null_problem';
+	  $barcode='4047905024324';
   }
   
 
